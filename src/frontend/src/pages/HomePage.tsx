@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const SLIDES_EN = [
@@ -111,21 +111,57 @@ const ARCHIVAL_HI = [
   "द्विपक्षीय समझौता डेटाबेस",
 ];
 
-const NEWSPAPERS_EN = [
-  "The Hindu",
-  "Indian Express",
-  "Times of India",
-  "Financial Times",
-  "The Guardian",
-  "New York Times",
-];
-const NEWSPAPERS_HI = [
-  "द हिंदू",
-  "इंडियन एक्सप्रेस",
-  "टाइम्स ऑफ़ इंडिया",
-  "फ़ाइनेंशियल टाइम्स",
-  "द गार्डियन",
-  "न्यूयॉर्क टाइम्स",
+const PUBLICATIONS = [
+  {
+    name: "The Hindu",
+    url: "https://www.thehindu.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=thehindu.com",
+  },
+  {
+    name: "The Indian Express",
+    url: "https://indianexpress.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=indianexpress.com",
+  },
+  {
+    name: "Hindustan Times",
+    url: "https://www.hindustantimes.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=hindustantimes.com",
+  },
+  {
+    name: "The Times of India",
+    url: "https://timesofindia.indiatimes.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=timesofindia.indiatimes.com",
+  },
+  {
+    name: "The Economic Times",
+    url: "https://economictimes.indiatimes.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=economictimes.indiatimes.com",
+  },
+  {
+    name: "Business Standard",
+    url: "https://www.business-standard.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=business-standard.com",
+  },
+  {
+    name: "Frontline",
+    url: "https://frontline.thehindu.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=frontline.thehindu.com",
+  },
+  {
+    name: "India Today",
+    url: "https://www.indiatoday.in",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=indiatoday.in",
+  },
+  {
+    name: "Outlook",
+    url: "https://www.outlookindia.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=outlookindia.com",
+  },
+  {
+    name: "PressReader",
+    url: "https://www.pressreader.com",
+    logo: "https://www.google.com/s2/favicons?sz=64&domain=pressreader.com",
+  },
 ];
 
 const DIGITAL_SERVICES_EN = [
@@ -347,6 +383,44 @@ const ARCHIVAL_ITEMS_HI = [
   },
 ];
 
+function PublicationLogoCard({ pub }: { pub: (typeof PUBLICATIONS)[0] }) {
+  const [imgError, setImgError] = useState(false);
+  const initials = pub.name
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+
+  return (
+    <a
+      href={pub.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-ocid="newspapers.item"
+      className="group flex flex-col items-center p-3 bg-white border border-[#e8e4de] rounded hover:border-[#FF9933] transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FF9933]"
+      aria-label={`${pub.name} – opens in new tab`}
+    >
+      <div className="w-10 h-10 flex items-center justify-center mb-2 rounded overflow-hidden">
+        {!imgError ? (
+          <img
+            src={pub.logo}
+            alt={pub.name}
+            className="w-10 h-10 object-contain"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-10 h-10 flex items-center justify-center bg-[#F5F3EE] border border-[#e8e4de] rounded text-xs font-bold text-[#1a5c35] uppercase">
+            {initials}
+          </div>
+        )}
+      </div>
+      <span className="text-[10px] text-center text-[#333] leading-tight font-medium line-clamp-2 w-full">
+        {pub.name}
+      </span>
+    </a>
+  );
+}
+
 export default function HomePage() {
   const { lang } = useLanguage();
   const isHi = lang === "hi";
@@ -356,7 +430,6 @@ export default function HomePage() {
   const readingRoom = isHi ? READING_ROOM_HI : READING_ROOM_EN;
   const irDatabases = isHi ? IR_DATABASES_HI : IR_DATABASES_EN;
   const archivalDb = isHi ? ARCHIVAL_HI : ARCHIVAL_EN;
-  const newspapers = isHi ? NEWSPAPERS_HI : NEWSPAPERS_EN;
   const digitalServices = isHi ? DIGITAL_SERVICES_HI : DIGITAL_SERVICES_EN;
   const announcements = isHi ? ANNOUNCEMENTS_HI : ANNOUNCEMENTS_EN;
   const tenders = isHi ? TENDERS_HI : TENDERS_EN;
@@ -489,7 +562,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Resources */}
+      {/* Resources – 3-column: IR Databases | Archival Databases | Online Newspapers & Magazines */}
       <section
         className="bg-white py-12 px-4"
         aria-labelledby="resources-heading"
@@ -502,7 +575,8 @@ export default function HomePage() {
             {isHi ? "संसाधन" : "Resources"}
           </h2>
           <div className="w-12 h-1 bg-saffron mb-8" aria-hidden="true" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            {/* IR Databases */}
             <div>
               <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
                 {isHi ? "आईआर डेटाबेस / डेटा स्रोत" : "IR Databases / Data Sources"}
@@ -518,6 +592,8 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+
+            {/* Archival Databases */}
             <div>
               <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
                 {isHi ? "अभिलेखागार डेटाबेस" : "Archival Databases"}
@@ -533,24 +609,24 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+
+            {/* Online Newspapers & Magazines */}
             <div>
               <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
                 {isHi
                   ? "ऑनलाइन समाचार पत्र एवं पत्रिकाएं"
                   : "Online Newspapers & Magazines"}
               </h3>
-              <div className="grid grid-cols-3 gap-2">
-                {newspapers.map((name) => (
-                  <div
-                    key={name}
-                    className="h-14 border border-border rounded flex items-center justify-center"
-                  >
-                    <span className="text-[10px] text-center text-[#888] px-1 leading-tight">
-                      {name}
-                    </span>
-                  </div>
+              <div className="grid grid-cols-2 gap-2">
+                {PUBLICATIONS.map((pub) => (
+                  <PublicationLogoCard key={pub.name} pub={pub} />
                 ))}
               </div>
+              <p className="mt-3 text-[10px] text-[#888] italic">
+                {isHi
+                  ? "* बाहरी साइटें नए टैब में खुलती हैं।"
+                  : "* External sites open in a new tab."}
+              </p>
             </div>
           </div>
         </div>

@@ -4,16 +4,11 @@ import ServiceSidebar from "../components/ServiceSidebar";
 
 type Reason = "transfer" | "superannuation" | "other" | "";
 
-const TRACK_STEPS = ["Submitted", "Under Review", "Approved"];
-
 export default function NDCPage() {
   const [reason, setReason] = useState<Reason>("");
   const [otherReason, setOtherReason] = useState("");
   const [declared, setDeclared] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [trackRef, setTrackRef] = useState("");
-  const [trackStatus] = useState(1);
-  const [trackResult, setTrackResult] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     employeeId: "",
@@ -266,59 +261,6 @@ export default function NDCPage() {
               Submit NDC Request
             </button>
           </form>
-
-          <div className="mt-8 bg-white border border-border rounded p-5">
-            <h2 className="font-semibold text-olive mb-4">
-              Track Your NDC Request
-            </h2>
-            <div className="flex gap-3 mb-4">
-              <input
-                type="text"
-                placeholder="Enter Application Reference Number"
-                value={trackRef}
-                onChange={(e) => setTrackRef(e.target.value)}
-                className="flex-1 h-10 px-3 border border-border rounded text-sm focus:outline-none focus:border-olive"
-                data-ocid="ndc.search_input"
-              />
-              <button
-                type="button"
-                onClick={() => setTrackResult(true)}
-                className="px-4 py-2 bg-olive text-white text-sm font-semibold rounded hover:bg-olive-dark"
-                data-ocid="ndc.button"
-              >
-                Track
-              </button>
-            </div>
-            {trackResult && (
-              <div className="flex items-center gap-2" data-ocid="ndc.panel">
-                {TRACK_STEPS.map((stepLabel, i) => (
-                  <div key={stepLabel} className="flex items-center">
-                    <div className="flex flex-col items-center gap-1">
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                          i <= trackStatus
-                            ? "bg-saffron text-white"
-                            : "bg-[#F0F0F0] text-[#888]"
-                        }`}
-                      >
-                        {i + 1}
-                      </div>
-                      <span className="text-xs text-center w-16">
-                        {stepLabel}
-                      </span>
-                    </div>
-                    {i < TRACK_STEPS.length - 1 && (
-                      <div
-                        className={`h-px w-10 mb-5 ${
-                          i < trackStatus ? "bg-saffron" : "bg-border"
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
         </main>
       </div>
     </div>

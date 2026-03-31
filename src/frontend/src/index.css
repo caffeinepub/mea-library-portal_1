@@ -186,3 +186,12 @@ html.high-contrast :focus-visible {
   outline: 3px solid #ffff00 !important;
   outline-offset: 3px !important;
 }
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

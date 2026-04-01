@@ -77,93 +77,6 @@ const READING_ROOM_HI = [
   },
 ];
 
-const IR_DATABASES_EN = [
-  "JSTOR – Scholarly Journals",
-  "ProQuest Political Science",
-  "UN iLibrary",
-  "World Bank Open Data",
-  "SIPRI Databases",
-  "Oxford Reference Online",
-];
-const IR_DATABASES_HI = [
-  "JSTOR – शैक्षणिक जर्नल",
-  "ProQuest राजनीति विज्ञान",
-  "संयुक्त राष्ट्र आई-लाइब्रेरी",
-  "विश्व बैंक ओपन डेटा",
-  "SIPRI डेटाबेस",
-  "ऑक्सफ़र्ड रेफ़रेंस ऑनलाइन",
-];
-
-const ARCHIVAL_EN = [
-  "MEA Annual Reports Archive",
-  "Indian Treaties Collection",
-  "Foreign Affairs Records 1947–",
-  "Commonwealth Documents",
-  "SAARC Archives",
-  "Bilateral Agreements Database",
-];
-const ARCHIVAL_HI = [
-  "एमईए वार्षिक रिपोर्ट अभिलेखागार",
-  "भारतीय संधि संग्रह",
-  "विदेश मामलों के अभिलेख 1947–",
-  "राष्ट्रमंडल दस्तावेज़",
-  "सार्क अभिलेखागार",
-  "द्विपक्षीय समझौता डेटाबेस",
-];
-
-const PUBLICATIONS = [
-  {
-    name: "The Hindu",
-    url: "https://www.thehindu.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=thehindu.com",
-  },
-  {
-    name: "The Indian Express",
-    url: "https://indianexpress.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=indianexpress.com",
-  },
-  {
-    name: "Hindustan Times",
-    url: "https://www.hindustantimes.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=hindustantimes.com",
-  },
-  {
-    name: "The Times of India",
-    url: "https://timesofindia.indiatimes.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=timesofindia.indiatimes.com",
-  },
-  {
-    name: "The Economic Times",
-    url: "https://economictimes.indiatimes.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=economictimes.indiatimes.com",
-  },
-  {
-    name: "Business Standard",
-    url: "https://www.business-standard.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=business-standard.com",
-  },
-  {
-    name: "Frontline",
-    url: "https://frontline.thehindu.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=frontline.thehindu.com",
-  },
-  {
-    name: "India Today",
-    url: "https://www.indiatoday.in",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=indiatoday.in",
-  },
-  {
-    name: "Outlook",
-    url: "https://www.outlookindia.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=outlookindia.com",
-  },
-  {
-    name: "PressReader",
-    url: "https://www.pressreader.com",
-    logo: "https://www.google.com/s2/favicons?sz=64&domain=pressreader.com",
-  },
-];
-
 const DIGITAL_SERVICES_EN = [
   {
     title: "Online Book Recommendation",
@@ -208,101 +121,152 @@ const DIGITAL_SERVICES_HI = [
 const ANNOUNCEMENTS_EN = [
   {
     date: "24 Mar 2026",
+    category: "Notice",
     title: "Library remains closed on 25 March (National Holiday)",
     desc: "The MEA Library will remain closed on 25 March 2026 on account of Holi. Members are requested to plan their visits accordingly.",
+    isNew: true,
   },
   {
     date: "20 Mar 2026",
+    category: "Notice",
     title: "New batch of diplomatic law books received",
     desc: "MEA Library has received 240 new titles in international law and diplomacy. Catalogue entries will be updated within 3 working days.",
+    isNew: false,
   },
   {
     date: "15 Mar 2026",
+    category: "Circular",
     title: "PressReader access extended to all MEA missions",
     desc: "The PressReader digital subscription is now available to all Indian missions abroad. Contact your mission library coordinator for access details.",
+    isNew: false,
   },
   {
     date: "10 Mar 2026",
+    category: "Notice",
     title: "E-thesis portal integrated with OPAC",
     desc: "Students and researchers can now access e-theses directly through the OPAC portal. Over 4,500 theses are now searchable.",
+    isNew: false,
   },
   {
     date: "05 Mar 2026",
+    category: "Circular",
     title: "Tender notice for library automation project",
     desc: "Applications invited for library management system upgrade. Eligible vendors may submit their bids. Last date: 30 March 2026.",
+    isNew: false,
   },
 ];
 
 const ANNOUNCEMENTS_HI = [
   {
     date: "24 मार्च 2026",
+    category: "सूचना",
     title: "25 मार्च को पुस्तकालय बंद (राष्ट्रीय अवकाश)",
     desc: "एमईए पुस्तकालय होली के अवसर पर 25 मार्च 2026 को बंद रहेगा। सदस्यों से अनुरोध है कि अपनी यात्राओं की योजना बनाएं।",
+    isNew: true,
   },
   {
     date: "20 मार्च 2026",
+    category: "सूचना",
     title: "कूटनीतिक विधि पुस्तकों की नई खेप प्राप्त",
-    desc: "एमईए पुस्तकालय को अंतर्राष्ट्रीय विधि और कूटनीति में 240 नए शीर्षक प्राप्त हुए हैं। 3 कार्य दिवसों में सूची अद्यतन की जाएगी।",
+    desc: "एमईए पुस्तकालय को अंतर्राष्ट्रीय विधि और कूटनीति में 240 नए शीर्षक प्राप्त हुए हैं।",
+    isNew: false,
   },
   {
     date: "15 मार्च 2026",
+    category: "परिपत्र",
     title: "PressReader की पहुंच सभी एमईए मिशनों तक बढ़ाई गई",
     desc: "PressReader की डिजिटल सदस्यता अब विदेश में सभी भारतीय मिशनों को उपलब्ध है।",
+    isNew: false,
   },
   {
     date: "10 मार्च 2026",
+    category: "सूचना",
     title: "ई-थीसिस पोर्टल OPAC के साथ एकीकृत",
     desc: "छात्र और शोधकर्ता अब OPAC पोर्टल के माध्यम से सीधे ई-थीसिस तक पहुंच सकते हैं।",
+    isNew: false,
   },
   {
     date: "05 मार्च 2026",
+    category: "परिपत्र",
     title: "पुस्तकालय स्वचालन परियोजना के लिए टेंडर सूचना",
     desc: "पुस्तकालय प्रबंधन प्रणाली उन्नयन के लिए आवेदन आमंत्रित। अंतिम तिथि: 30 मार्च 2026।",
+    isNew: false,
   },
 ];
 
-const TENDERS_EN = [
+const NEWS_EN = [
   {
-    tag: "Tender",
-    title: "Library Automation System Upgrade",
-    date: "Last date: 30 Mar 2026",
+    date: "30 Mar 2026",
+    category: "Press Release",
+    title: "MEA Library digitizes rare diplomatic documents from 1947–1960",
+    desc: "Over 2,000 rare diplomatic records have been scanned and indexed as part of the MEA Digital Heritage Initiative.",
+    isNew: true,
   },
   {
-    tag: "Notice",
-    title: "Recruitment: Library Assistant Posts",
-    date: "Last date: 15 Apr 2026",
+    date: "22 Mar 2026",
+    category: "Media Coverage",
+    title: "MEA Library featured in National Archives symposium",
+    desc: "The library's archival digitization project was highlighted as a model for government knowledge preservation.",
+    isNew: false,
   },
   {
-    tag: "Tender",
-    title: "Annual Maintenance Contract – HVAC",
-    date: "Last date: 20 Apr 2026",
+    date: "18 Mar 2026",
+    category: "Update",
+    title: "New journal subscriptions added for April 2026",
+    desc: "Six new international relations journals added via MyLOFT. Officers may request access through the library portal.",
+    isNew: false,
   },
   {
-    tag: "Circular",
-    title: "New Access Policy for Research Scholars",
-    date: "Effective: 01 Apr 2026",
+    date: "12 Mar 2026",
+    category: "Press Release",
+    title: "Hindi book collection expanded with 500 new titles",
+    desc: "The Hindi diplomacy and policy section now holds over 3,200 titles following the latest acquisition drive.",
+    isNew: false,
+  },
+  {
+    date: "06 Mar 2026",
+    category: "Update",
+    title: "OPAC system upgraded to version 8.3",
+    desc: "Faster search, improved subject filters, and a mobile-friendly interface are now live on the OPAC portal.",
+    isNew: false,
   },
 ];
-const TENDERS_HI = [
+
+const NEWS_HI = [
   {
-    tag: "टेंडर",
-    title: "पुस्तकालय स्वचालन प्रणाली उन्नयन",
-    date: "अंतिम तिथि: 30 मार्च 2026",
+    date: "30 मार्च 2026",
+    category: "प्रेस विज्ञप्ति",
+    title: "एमईए पुस्तकालय ने 1947–1960 के दुर्लभ दस्तावेज़ डिजिटल किए",
+    desc: "एमईए डिजिटल हेरिटेज पहल के तहत 2,000 से अधिक दुर्लभ कूटनीतिक अभिलेखों को स्कैन कर सूचीबद्ध किया गया।",
+    isNew: true,
   },
   {
-    tag: "सूचना",
-    title: "भर्ती: पुस्तकालय सहायक पद",
-    date: "अंतिम तिथि: 15 अप्रैल 2026",
+    date: "22 मार्च 2026",
+    category: "मीडिया कवरेज",
+    title: "राष्ट्रीय अभिलेखागार संगोष्ठी में एमईए पुस्तकालय चर्चित",
+    desc: "पुस्तकालय की डिजिटलीकरण परियोजना को सरकारी ज्ञान संरक्षण के मॉडल के रूप में उजागर किया गया।",
+    isNew: false,
   },
   {
-    tag: "टेंडर",
-    title: "वार्षिक रखरखाव अनुबंध – HVAC",
-    date: "अंतिम तिथि: 20 अप्रैल 2026",
+    date: "18 मार्च 2026",
+    category: "अद्यतन",
+    title: "अप्रैल 2026 के लिए नई जर्नल सदस्यताएं जोड़ी गईं",
+    desc: "MyLOFT के माध्यम से छह नए अंतर्राष्ट्रीय संबंध जर्नल जोड़े गए हैं।",
+    isNew: false,
   },
   {
-    tag: "परिपत्र",
-    title: "शोध विद्वानों के लिए नई पहुंच नीति",
-    date: "प्रभावी: 01 अप्रैल 2026",
+    date: "12 मार्च 2026",
+    category: "प्रेस विज्ञप्ति",
+    title: "हिंदी पुस्तक संग्रह में 500 नए शीर्षक जोड़े गए",
+    desc: "नवीनतम अधिग्रहण के बाद हिंदी कूटनीति अनुभाग में अब 3,200 से अधिक शीर्षक हैं।",
+    isNew: false,
+  },
+  {
+    date: "06 मार्च 2026",
+    category: "अद्यतन",
+    title: "OPAC प्रणाली संस्करण 8.3 में अपग्रेड",
+    desc: "तेज़ खोज, बेहतर विषय फ़िल्टर, और मोबाइल-अनुकूल इंटरफ़ेस अब OPAC पोर्टल पर लाइव हैं।",
+    isNew: false,
   },
 ];
 
@@ -383,41 +347,152 @@ const ARCHIVAL_ITEMS_HI = [
   },
 ];
 
-function PublicationLogoCard({ pub }: { pub: (typeof PUBLICATIONS)[0] }) {
-  const [imgError, setImgError] = useState(false);
-  const initials = pub.name
-    .split(" ")
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("");
+// Resource tab data
+const IR_DB_ITEMS = [
+  "Fitch Connect",
+  "Jane's Online",
+  "Economic Intelligence Unit",
+  "BBC Monitoring",
+  "Statista",
+];
+const ARCHIVAL_DB_ITEMS = ["JSTOR", "ProQuest Historical Newspapers"];
+const NEWSPAPERS_ITEMS = [
+  "The Hindu",
+  "Financial Times",
+  "The Diplomat",
+  "Foreign Affairs",
+  "The Wall Street Journal",
+  "The New York Times",
+  "Foreign Policy",
+  "Nikkei Asian Review",
+  "The Economist",
+];
+const JOURNALS_ITEMS = [
+  "Taylor & Francis Group",
+  "Oxford University Press",
+  "Cambridge University Press",
+  "Middle East Journal",
+  "Economic and Political Weekly",
+];
+const EBOOKS_ITEMS = ["Bloomsbury", "Sage eVidya (Hindi)", "Libby"];
+const PRINT_BOOKS_ITEMS = [
+  "Rare Books Collection",
+  "Indian Diplomatic Heritage Collection (IDHC)",
+  "General Collection",
+];
 
+const RESOURCE_TABS_EN = [
+  "IR Databases",
+  "Archival Databases",
+  "Online Newspapers & Magazines",
+  "Online Journals",
+  "E-Books",
+  "Print Books",
+];
+const RESOURCE_TABS_HI = [
+  "आईआर डेटाबेस",
+  "अभिलेखागार डेटाबेस",
+  "ऑनलाइन समाचार पत्र",
+  "ऑनलाइन जर्नल",
+  "ई-बुक",
+  "प्रिंट पुस्तकें",
+];
+
+// External link SVG icon
+function ExternalLinkIcon({ color = "#003580" }: { color?: string }) {
   return (
-    <a
-      href={pub.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-ocid="newspapers.item"
-      className="group flex flex-col items-center p-3 bg-white border border-[#e8e4de] rounded hover:border-[#FF9933] transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#FF9933]"
-      aria-label={`${pub.name} – opens in new tab`}
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
     >
-      <div className="w-10 h-10 flex items-center justify-center mb-2 rounded overflow-hidden">
-        {!imgError ? (
-          <img
-            src={pub.logo}
-            alt={pub.name}
-            className="w-10 h-10 object-contain"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="w-10 h-10 flex items-center justify-center bg-[#F5F3EE] border border-[#e8e4de] rounded text-xs font-bold text-[#1a5c35] uppercase">
-            {initials}
-          </div>
-        )}
-      </div>
-      <span className="text-[10px] text-center text-[#333] leading-tight font-medium line-clamp-2 w-full">
-        {pub.name}
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+function ResourceListItem({ name }: { name: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="flex items-center justify-between py-2.5 border-b border-[#f0f0f0] last:border-0 cursor-pointer group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span className="flex items-center gap-2">
+        <ExternalLinkIcon color={hovered ? "#FF9933" : "#003580"} />
+        <span
+          className="text-sm"
+          style={{
+            color: hovered ? "#FF9933" : "#003580",
+            textDecoration: hovered ? "underline" : "none",
+            transition: "color 0.15s ease",
+          }}
+        >
+          {name}
+        </span>
       </span>
-    </a>
+      <span className="text-[11px] text-[#888] bg-[#f5f5f5] px-2 py-0.5 rounded">
+        via MyLOFT
+      </span>
+    </div>
+  );
+}
+
+function PrintBookListItem({ name }: { name: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="flex items-center justify-between py-2.5 border-b border-[#f0f0f0] last:border-0 cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span className="flex items-center gap-2">
+        <ExternalLinkIcon color={hovered ? "#FF9933" : "#003580"} />
+        <span
+          className="text-sm"
+          style={{
+            color: hovered ? "#FF9933" : "#003580",
+            textDecoration: hovered ? "underline" : "none",
+            transition: "color 0.15s ease",
+          }}
+        >
+          {name}
+        </span>
+      </span>
+      <span className="text-[11px] text-[#888] bg-[#f5f5f5] px-2 py-0.5 rounded">
+        via OPAC
+      </span>
+    </div>
+  );
+}
+
+function NewspaperCard({ name }: { name: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="px-3 py-2.5 rounded text-sm cursor-pointer transition-all duration-200"
+      style={{
+        background: "#fff",
+        border: hovered ? "1px solid #FF9933" : "1px solid #E0E0E0",
+        borderRadius: "6px",
+        color: hovered ? "#FF9933" : "#003580",
+        transition: "border-color 0.15s ease, color 0.15s ease",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {name}
+    </div>
   );
 }
 
@@ -426,15 +501,18 @@ export default function HomePage() {
   const isHi = lang === "hi";
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [activeAnnouncementTab, setActiveAnnouncementTab] = useState<
+    "announcements" | "news"
+  >("announcements");
+  const [activeResourceTab, setActiveResourceTab] = useState(0);
 
   const slides = isHi ? SLIDES_HI : SLIDES_EN;
   const readingRoom = isHi ? READING_ROOM_HI : READING_ROOM_EN;
-  const irDatabases = isHi ? IR_DATABASES_HI : IR_DATABASES_EN;
-  const archivalDb = isHi ? ARCHIVAL_HI : ARCHIVAL_EN;
   const digitalServices = isHi ? DIGITAL_SERVICES_HI : DIGITAL_SERVICES_EN;
   const announcements = isHi ? ANNOUNCEMENTS_HI : ANNOUNCEMENTS_EN;
-  const tenders = isHi ? TENDERS_HI : TENDERS_EN;
+  const news = isHi ? NEWS_HI : NEWS_EN;
   const archivalItems = isHi ? ARCHIVAL_ITEMS_HI : ARCHIVAL_ITEMS_EN;
+  const resourceTabs = isHi ? RESOURCE_TABS_HI : RESOURCE_TABS_EN;
 
   useEffect(() => {
     if (paused) return;
@@ -447,6 +525,17 @@ export default function HomePage() {
 
   return (
     <div id="main-content">
+      {/* Tricolor Strip */}
+      <div
+        aria-hidden="true"
+        style={{
+          width: "100%",
+          height: "5px",
+          background:
+            "linear-gradient(to right, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%)",
+        }}
+      />
+
       {/* Hero Slider */}
       <section
         className="relative h-[220px] md:h-[300px] lg:h-[440px] overflow-hidden"
@@ -461,7 +550,6 @@ export default function HomePage() {
             style={{ opacity: i === slide ? 1 : 0 }}
             aria-hidden={i !== slide}
           >
-            {/* Background image */}
             <img
               src={s.img}
               alt=""
@@ -469,7 +557,6 @@ export default function HomePage() {
               style={{ minWidth: "1920px", width: "100%" }}
               aria-hidden="true"
             />
-            {/* Gradient overlay */}
             <div
               className="absolute inset-0"
               style={{
@@ -482,7 +569,6 @@ export default function HomePage() {
           </div>
         ))}
 
-        {/* Text content */}
         <div className="relative z-10 w-full h-full flex items-center">
           <div className="max-w-[560px] pl-[30px] md:pl-[60px] pr-4">
             <p className="text-[#FF9933] text-xs uppercase tracking-[0.15em] font-semibold mb-3">
@@ -519,30 +605,27 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Prev arrow */}
         <button
           type="button"
           onClick={() =>
             setSlide((s) => (s - 1 + slides.length) % slides.length)
           }
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white text-[#003580] rounded-full shadow-md hover:bg-gray-100 z-10 text-2xl leading-none transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white border border-[#003580] rounded-full text-[#003580] hover:bg-[#003580] hover:text-white transition-all duration-200 z-10 text-2xl leading-none"
           aria-label={isHi ? "पिछला स्लाइड" : "Previous slide"}
           data-ocid="hero.pagination_prev"
         >
           ‹
         </button>
-        {/* Next arrow */}
         <button
           type="button"
           onClick={() => setSlide((s) => (s + 1) % slides.length)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white text-[#003580] rounded-full shadow-md hover:bg-gray-100 z-10 text-2xl leading-none transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white border border-[#003580] rounded-full text-[#003580] hover:bg-[#003580] hover:text-white transition-all duration-200 z-10 text-2xl leading-none"
           aria-label={isHi ? "अगला स्लाइड" : "Next slide"}
           data-ocid="hero.pagination_next"
         >
           ›
         </button>
 
-        {/* Dots */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {slides.map((s, i) => (
             <button
@@ -576,8 +659,9 @@ export default function HomePage() {
             {readingRoom.map((card) => (
               <div
                 key={card.title}
-                className="bg-white border border-border rounded p-5 flex flex-col border-t-4"
-                style={{ borderTopColor: "#FF9933" }}
+                data-ocid="reading-room.card"
+                className="bg-white border border-border rounded p-5 flex flex-col border-t-4 transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:bg-[#FFFAF2] cursor-pointer"
+                style={{ borderTopColor: "#FF9933", willChange: "transform" }}
               >
                 <h3 className="font-semibold text-olive text-sm mb-2">
                   {card.title}
@@ -597,7 +681,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Resources – 3-column */}
+      {/* Resources – 6 Tabs */}
       <section
         className="bg-white py-12 px-4"
         aria-labelledby="resources-heading"
@@ -609,59 +693,220 @@ export default function HomePage() {
           >
             {isHi ? "संसाधन" : "Resources"}
           </h2>
-          <div className="w-12 h-1 bg-[#FF9933] mb-8" aria-hidden="true" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            {/* IR Databases */}
-            <div>
-              <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
-                {isHi ? "आईआर डेटाबेस / डेटा स्रोत" : "IR Databases / Data Sources"}
-              </h3>
-              <ul className="space-y-2">
-                {irDatabases.map((item) => (
-                  <li key={item}>
-                    <span className="flex items-center gap-2 text-sm text-[#333] cursor-pointer hover:text-[#FF9933]">
-                      <span className="text-[#FF9933] text-xs">↗</span>
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="w-12 h-1 bg-[#FF9933] mb-6" aria-hidden="true" />
 
-            {/* Archival Databases */}
-            <div>
-              <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
-                {isHi ? "अभिलेखागार डेटाबेस" : "Archival Databases"}
-              </h3>
-              <ul className="space-y-2">
-                {archivalDb.map((item) => (
-                  <li key={item}>
-                    <span className="flex items-center gap-2 text-sm text-[#333] cursor-pointer hover:text-[#FF9933]">
-                      <span className="text-[#FF9933] text-xs">↗</span>
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Tab Bar */}
+          <div
+            role="tablist"
+            aria-label={isHi ? "संसाधन श्रेणियां" : "Resource categories"}
+            className="flex border-b border-[#E0E0E0] mb-6 overflow-x-auto"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {resourceTabs.map((tab, idx) => (
+              <button
+                key={tab}
+                type="button"
+                role="tab"
+                id={`resource-tab-${idx}`}
+                aria-selected={activeResourceTab === idx}
+                aria-controls={`resource-panel-${idx}`}
+                data-ocid="resources.tab"
+                onClick={() => setActiveResourceTab(idx)}
+                className="text-sm font-medium whitespace-nowrap px-5 py-3 transition-all duration-200 border-b-0 flex-shrink-0"
+                style={{
+                  color: activeResourceTab === idx ? "#003580" : "#666",
+                  fontWeight: activeResourceTab === idx ? 600 : 500,
+                  borderBottom:
+                    activeResourceTab === idx
+                      ? "3px solid #FF9933"
+                      : "3px solid transparent",
+                  marginBottom: "-1px",
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
 
-            {/* Online Newspapers & Magazines */}
-            <div>
-              <h3 className="font-semibold text-olive text-sm uppercase tracking-wider mb-4">
+          {/* Tab Panels */}
+          {/* Tab 0: IR Databases */}
+          <div
+            role="tabpanel"
+            id="resource-panel-0"
+            aria-labelledby="resource-tab-0"
+            style={{
+              display: activeResourceTab === 0 ? "block" : "none",
+              opacity: activeResourceTab === 0 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="max-w-xl">
+              {IR_DB_ITEMS.map((item) => (
+                <ResourceListItem key={item} name={item} />
+              ))}
+              <p className="mt-4 text-xs text-[#888] italic">
                 {isHi
-                  ? "ऑनलाइन समाचार पत्र एवं पत्रिकाएं"
-                  : "Online Newspapers & Magazines"}
-              </h3>
-              <div className="grid grid-cols-2 gap-2">
-                {PUBLICATIONS.map((pub) => (
-                  <PublicationLogoCard key={pub.name} pub={pub} />
-                ))}
-              </div>
-              <p className="mt-3 text-[10px] text-[#888] italic">
-                {isHi
-                  ? "* बाहरी साइटें नए टैब में खुलती हैं।"
-                  : "* External sites open in a new tab."}
+                  ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
+                  : "All resources accessed via MyLOFT platform"}
               </p>
+              <a
+                href="https://mealibrary.gov.in"
+                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+              >
+                {isHi ? "अभी पहुंचें →" : "Access Now →"}
+              </a>
+            </div>
+          </div>
+
+          {/* Tab 1: Archival Databases */}
+          <div
+            role="tabpanel"
+            id="resource-panel-1"
+            aria-labelledby="resource-tab-1"
+            style={{
+              display: activeResourceTab === 1 ? "block" : "none",
+              opacity: activeResourceTab === 1 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="max-w-xl">
+              {ARCHIVAL_DB_ITEMS.map((item) => (
+                <ResourceListItem key={item} name={item} />
+              ))}
+              <p className="mt-4 text-xs text-[#888] italic">
+                {isHi
+                  ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
+                  : "All resources accessed via MyLOFT platform"}
+              </p>
+              <a
+                href="https://mealibrary.gov.in"
+                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+              >
+                {isHi ? "अभी पहुंचें →" : "Access Now →"}
+              </a>
+            </div>
+          </div>
+
+          {/* Tab 2: Online Newspapers & Magazines */}
+          <div
+            role="tabpanel"
+            id="resource-panel-2"
+            aria-labelledby="resource-tab-2"
+            style={{
+              display: activeResourceTab === 2 ? "block" : "none",
+              opacity: activeResourceTab === 2 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+              {NEWSPAPERS_ITEMS.map((item) => (
+                <NewspaperCard key={item} name={item} />
+              ))}
+            </div>
+            <div className="flex items-center gap-2 py-3 border-t border-[#f0f0f0] mt-2">
+              <span className="text-sm font-medium text-[#003580]">
+                {isHi
+                  ? "PressReader – अन्य समाचार पत्र और पत्रिकाएं MyLOFT के माध्यम से"
+                  : "PressReader – Access other newspapers & magazines via MyLOFT"}
+              </span>
+              <a
+                href="https://mealibrary.gov.in"
+                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors whitespace-nowrap"
+              >
+                {isHi ? "पहुंचें →" : "Access →"}
+              </a>
+            </div>
+            <p className="mt-3 text-xs text-[#888] italic">
+              {isHi
+                ? "सभी संसाधन MyLOFT के माध्यम से"
+                : "All resources accessed via MyLOFT"}
+            </p>
+          </div>
+
+          {/* Tab 3: Online Journals */}
+          <div
+            role="tabpanel"
+            id="resource-panel-3"
+            aria-labelledby="resource-tab-3"
+            style={{
+              display: activeResourceTab === 3 ? "block" : "none",
+              opacity: activeResourceTab === 3 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="max-w-xl">
+              {JOURNALS_ITEMS.map((item) => (
+                <ResourceListItem key={item} name={item} />
+              ))}
+              <p className="mt-4 text-xs text-[#888] italic">
+                {isHi
+                  ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
+                  : "All resources accessed via MyLOFT platform"}
+              </p>
+              <a
+                href="https://mealibrary.gov.in"
+                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+              >
+                {isHi ? "अभी पहुंचें →" : "Access Now →"}
+              </a>
+            </div>
+          </div>
+
+          {/* Tab 4: E-Books */}
+          <div
+            role="tabpanel"
+            id="resource-panel-4"
+            aria-labelledby="resource-tab-4"
+            style={{
+              display: activeResourceTab === 4 ? "block" : "none",
+              opacity: activeResourceTab === 4 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="max-w-xl">
+              {EBOOKS_ITEMS.map((item) => (
+                <ResourceListItem key={item} name={item} />
+              ))}
+              <p className="mt-4 text-xs text-[#888] italic">
+                {isHi
+                  ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
+                  : "All resources accessed via MyLOFT platform"}
+              </p>
+              <a
+                href="https://mealibrary.gov.in"
+                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+              >
+                {isHi ? "अभी पहुंचें →" : "Access Now →"}
+              </a>
+            </div>
+          </div>
+
+          {/* Tab 5: Print Books */}
+          <div
+            role="tabpanel"
+            id="resource-panel-5"
+            aria-labelledby="resource-tab-5"
+            style={{
+              display: activeResourceTab === 5 ? "block" : "none",
+              opacity: activeResourceTab === 5 ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          >
+            <div className="max-w-xl">
+              {PRINT_BOOKS_ITEMS.map((item) => (
+                <PrintBookListItem key={item} name={item} />
+              ))}
+              <p className="mt-4 text-xs text-[#888] italic">
+                {isHi
+                  ? "OPAC (ऑनलाइन सार्वजनिक एक्सेस कैटलॉग) के माध्यम से मुद्रित पुस्तक कैटलॉग खोजें"
+                  : "Search print book catalogue via Online Public Access Catalogue (OPAC)"}
+              </p>
+              <a
+                href="https://mealibrary.gov.in"
+                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+              >
+                {isHi ? "OPAC में खोजें →" : "Search OPAC →"}
+              </a>
             </div>
           </div>
         </div>
@@ -684,8 +929,11 @@ export default function HomePage() {
             {digitalServices.map((svc) => (
               <div
                 key={svc.title}
-                className="bg-white border border-border rounded p-6 flex flex-col"
-                style={{ borderTop: "4px solid #FF9933" }}
+                className="bg-white border border-border rounded p-6 flex flex-col transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:bg-[#FFFAF2] cursor-pointer"
+                style={{
+                  borderTop: "4px solid #FF9933",
+                  willChange: "transform",
+                }}
               >
                 <div className="text-olive mb-3">
                   <svc.icon />
@@ -705,163 +953,201 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Announcements – 65%/35% layout */}
+      {/* Announcements & News – Tab UI */}
       <section
         className="bg-white py-12 px-4"
         aria-labelledby="announcements-heading"
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[65%_35%] gap-8">
-          {/* Left – Announcements */}
-          <div>
-            <h2
-              id="announcements-heading"
-              className="text-xl font-bold text-olive mb-2"
+        <div className="max-w-7xl mx-auto">
+          <h2
+            id="announcements-heading"
+            className="text-xl font-bold text-olive mb-2"
+          >
+            {isHi ? "घोषणाएं एवं समाचार" : "Announcements & News"}
+          </h2>
+          <div className="w-12 h-1 bg-[#FF9933] mb-6" aria-hidden="true" />
+
+          {/* Tab Bar */}
+          <div
+            role="tablist"
+            aria-label={
+              isHi ? "घोषणाएं एवं समाचार टैब" : "Announcements and News tabs"
+            }
+            className="flex border-b border-[#E0E0E0] mb-6"
+          >
+            <button
+              type="button"
+              role="tab"
+              id="ann-tab-announcements"
+              aria-selected={activeAnnouncementTab === "announcements"}
+              aria-controls="ann-panel-announcements"
+              data-ocid="announcements.tab"
+              onClick={() => setActiveAnnouncementTab("announcements")}
+              className="text-[15px] font-medium px-6 py-3 transition-all duration-200"
+              style={{
+                color: "#003580",
+                fontWeight:
+                  activeAnnouncementTab === "announcements" ? 600 : 500,
+                borderBottom:
+                  activeAnnouncementTab === "announcements"
+                    ? "3px solid #FF9933"
+                    : "3px solid transparent",
+                marginBottom: "-1px",
+              }}
             >
-              {isHi ? "घोषणाएं एवं ताज़ा समाचार" : "Announcements & Latest News"}
-            </h2>
-            <div className="w-12 h-1 bg-[#FF9933] mb-6" aria-hidden="true" />
+              {isHi ? "घोषणाएं" : "Announcements"}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="ann-tab-news"
+              aria-selected={activeAnnouncementTab === "news"}
+              aria-controls="ann-panel-news"
+              data-ocid="news.tab"
+              onClick={() => setActiveAnnouncementTab("news")}
+              className="text-[15px] font-medium px-6 py-3 transition-all duration-200"
+              style={{
+                color: "#003580",
+                fontWeight: activeAnnouncementTab === "news" ? 600 : 500,
+                borderBottom:
+                  activeAnnouncementTab === "news"
+                    ? "3px solid #FF9933"
+                    : "3px solid transparent",
+                marginBottom: "-1px",
+              }}
+            >
+              {isHi ? "समाचार" : "News"}
+            </button>
+          </div>
+
+          {/* Announcements Panel */}
+          <div
+            role="tabpanel"
+            id="ann-panel-announcements"
+            aria-labelledby="ann-tab-announcements"
+            style={{
+              display:
+                activeAnnouncementTab === "announcements" ? "block" : "none",
+              opacity: activeAnnouncementTab === "announcements" ? 1 : 0,
+              transition: "opacity 0.25s ease",
+            }}
+          >
             <div className="space-y-0">
               {announcements.map((item, idx) => (
                 <div
                   key={item.title}
                   data-ocid={`announcements.item.${idx + 1}`}
-                  className="pl-4 border-l-[3px] border-[#FF9933] pb-4 pt-1 border-b border-b-[#eeeeee] last:border-b-0 mb-3 last:mb-0"
+                  className="pl-4 border-l-[3px] border-[#FF9933] pb-4 pt-2 border-b border-b-[#eeeeee] last:border-b-0 mb-3 last:mb-0 transition-colors duration-200 hover:bg-[#FFF8F0] -ml-4 pl-[calc(1rem+3px)] rounded-r pr-2"
                 >
-                  <span className="inline-block text-xs font-semibold text-[#FF9933] mb-1">
-                    {item.date}
-                  </span>
-                  <h3 className="text-sm font-semibold text-olive mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span
+                      className="inline-block text-[11px] font-bold px-2 py-0.5 rounded"
+                      style={{ background: "#FF9933", color: "#003580" }}
+                    >
+                      {item.date}
+                    </span>
+                    {item.isNew && (
+                      <span
+                        className="inline-block text-[10px] font-bold px-2 py-0.5 rounded"
+                        style={{ background: "#138808", color: "#fff" }}
+                      >
+                        NEW
+                      </span>
+                    )}
+                    <span
+                      className="inline-block text-[11px] px-2 py-0.5 rounded"
+                      style={{
+                        background: "#E8F0FB",
+                        color: "#003580",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      {item.category}
+                    </span>
+                  </div>
+                  <h3 className="text-[15px] font-medium text-[#003580] mb-1 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-[#555] leading-relaxed mb-2">
+                  <p className="text-[13px] text-[#666] leading-relaxed truncate">
                     {item.desc}
                   </p>
-                  <button
-                    type="button"
-                    className="text-xs font-semibold text-[#FF9933] hover:text-olive transition-colors"
-                  >
-                    {isHi ? "अधिक पढ़ें →" : "Read More →"}
-                  </button>
                 </div>
               ))}
             </div>
-            <Link
-              to="/announcements"
-              className="inline-block mt-5 text-sm text-olive font-semibold hover:text-[#FF9933] underline"
-              data-ocid="announcements.link"
-            >
-              {isHi ? "सभी घोषणाएं देखें →" : "View All Announcements →"}
-            </Link>
-          </div>
-
-          {/* Right – Support cards */}
-          <aside aria-label={isHi ? "सहायता जानकारी" : "Library Support Info"}>
-            {/* Library Hours card */}
-            <div
-              className="bg-[#F5F3EE] border border-[#e8e4de] rounded p-5 mb-4"
-              style={{ borderTop: "4px solid #FF9933" }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-[#FF9933] text-lg">🕐</span>
-                <h3 className="font-bold text-olive text-sm uppercase tracking-wide">
-                  {isHi ? "पुस्तकालय समय" : "Library Hours"}
-                </h3>
-              </div>
-              <ul className="space-y-1.5 mb-4 text-sm text-[#444]">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#2e7d32] shrink-0" />
-                  <span>
-                    {isHi
-                      ? "सोम–शुक्र: सुबह 9 – शाम 6"
-                      : "Mon–Fri: 9:00 AM – 6:00 PM"}
-                  </span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#e8a020] shrink-0" />
-                  <span>
-                    {isHi
-                      ? "शनिवार: सुबह 10 – दोपहर 2"
-                      : "Saturday: 10:00 AM – 2:00 PM"}
-                  </span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#c62828] shrink-0" />
-                  <span>
-                    {isHi
-                      ? "रवि / सार्वजनिक अवकाश: बंद"
-                      : "Sun / Public Holidays: Closed"}
-                  </span>
-                </li>
-              </ul>
-              <div className="border-t border-[#ddd] pt-3 space-y-1 text-xs text-[#555]">
-                <p className="flex items-center gap-2">
-                  <span className="text-[#FF9933]">📞</span>
-                  <a href="tel:+911123012113" className="hover:text-[#FF9933]">
-                    +91-11-2301-2113
-                  </a>
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-[#FF9933]">✉</span>
-                  <a
-                    href="mailto:library@mea.gov.in"
-                    className="hover:text-[#FF9933]"
-                  >
-                    library@mea.gov.in
-                  </a>
-                </p>
-              </div>
-              <button
-                type="button"
-                className="inline-block mt-4 px-4 py-2 bg-[#FF9933] text-white text-xs font-semibold rounded hover:bg-[#e8871e] transition-colors"
-                data-ocid="support.primary_button"
-              >
-                {isHi ? "हमसे संपर्क करें" : "Contact Us"}
-              </button>
-            </div>
-
-            {/* Latest Tenders & Notices */}
-            <div
-              className="bg-white border border-[#e8e4de] rounded p-5"
-              style={{ borderTop: "4px solid #003580" }}
-            >
-              <h3 className="font-bold text-[#003580] text-xs uppercase tracking-wider mb-3">
-                {isHi ? "नवीनतम टेंडर एवं सूचनाएं" : "Latest Tenders & Notices"}
-              </h3>
-              <div className="w-8 h-1 bg-[#FF9933] mb-3" aria-hidden="true" />
-              <ul className="space-y-0">
-                {tenders.map((tender, i) => (
-                  <li
-                    key={tender.title}
-                    className={`py-2.5 ${i < tenders.length - 1 ? "border-b border-[#eeeeee]" : ""}`}
-                    data-ocid={`tenders.item.${i + 1}`}
-                  >
-                    <span
-                      className={`inline-block text-[10px] font-semibold uppercase px-2 py-0.5 rounded mb-1 ${
-                        tender.tag === "Notice" || tender.tag === "सूचना"
-                          ? "bg-[#2e7d32] text-white"
-                          : tender.tag === "Circular" || tender.tag === "परिपत्र"
-                            ? "bg-[#6a1a6a] text-white"
-                            : "bg-[#003580] text-white"
-                      }`}
-                    >
-                      {tender.tag}
-                    </span>
-                    <p className="text-xs font-semibold text-[#1E2B4A] leading-snug mb-0.5">
-                      {tender.title}
-                    </p>
-                    <p className="text-[10px] text-[#888]">{tender.date}</p>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex justify-end mt-5">
               <Link
-                to="/tenders"
-                className="inline-block mt-3 text-xs text-[#FF9933] font-semibold hover:text-olive transition-colors"
-                data-ocid="tenders.link"
+                to="/announcements"
+                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                data-ocid="announcements.link"
               >
-                {isHi ? "सभी टेंडर देखें →" : "View All Tenders →"}
+                {isHi ? "सभी घोषणाएं देखें →" : "View All Announcements →"}
               </Link>
             </div>
-          </aside>
+          </div>
+
+          {/* News Panel */}
+          <div
+            role="tabpanel"
+            id="ann-panel-news"
+            aria-labelledby="ann-tab-news"
+            style={{
+              display: activeAnnouncementTab === "news" ? "block" : "none",
+              opacity: activeAnnouncementTab === "news" ? 1 : 0,
+              transition: "opacity 0.25s ease",
+            }}
+          >
+            <div className="space-y-0">
+              {news.map((item, idx) => (
+                <div
+                  key={item.title}
+                  data-ocid={`news.item.${idx + 1}`}
+                  className="pl-4 border-l-[3px] border-[#FF9933] pb-4 pt-2 border-b border-b-[#eeeeee] last:border-b-0 mb-3 last:mb-0 transition-colors duration-200 hover:bg-[#FFF8F0] -ml-4 pl-[calc(1rem+3px)] rounded-r pr-2"
+                >
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span
+                      className="inline-block text-[11px] font-bold px-2 py-0.5 rounded"
+                      style={{ background: "#FF9933", color: "#003580" }}
+                    >
+                      {item.date}
+                    </span>
+                    {item.isNew && (
+                      <span
+                        className="inline-block text-[10px] font-bold px-2 py-0.5 rounded"
+                        style={{ background: "#138808", color: "#fff" }}
+                      >
+                        NEW
+                      </span>
+                    )}
+                    <span
+                      className="inline-block text-[11px] px-2 py-0.5 rounded"
+                      style={{
+                        background: "#E8F0FB",
+                        color: "#003580",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      {item.category}
+                    </span>
+                  </div>
+                  <h3 className="text-[15px] font-medium text-[#003580] mb-1 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-[13px] text-[#666] leading-relaxed truncate">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-end mt-5">
+              <a
+                href="https://mealibrary.gov.in"
+                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                data-ocid="news.link"
+              >
+                {isHi ? "सभी समाचार देखें →" : "View All News →"}
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -975,12 +1261,14 @@ function NewArrivalsCarousel({
               </div>
             ))}
           </div>
+          {/* Arrows inside carousel */}
           <button
             type="button"
             onClick={prev}
             disabled={currentIndex === 0}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-[#ccc] bg-white rounded-full text-olive hover:border-olive hover:bg-olive hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-xl"
-            aria-label={isHi ? "पिछला" : "Previous archival"}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white border border-[#003580] rounded-full text-[#003580] hover:bg-[#003580] hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed z-10 text-xl"
+            aria-label={isHi ? "पिछला" : "Previous slide"}
+            data-ocid="new-arrivals.pagination_prev"
           >
             ‹
           </button>
@@ -988,8 +1276,9 @@ function NewArrivalsCarousel({
             type="button"
             onClick={next}
             disabled={currentIndex >= maxIndex}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center border border-[#ccc] bg-white rounded-full text-olive hover:border-olive hover:bg-olive hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-xl"
-            aria-label={isHi ? "अगला" : "Next archival"}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white border border-[#003580] rounded-full text-[#003580] hover:bg-[#003580] hover:text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed z-10 text-xl"
+            aria-label={isHi ? "अगला" : "Next slide"}
+            data-ocid="new-arrivals.pagination_next"
           >
             ›
           </button>

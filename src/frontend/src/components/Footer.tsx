@@ -20,7 +20,13 @@ function formatCount(n: number): string {
   return n.toLocaleString("en-IN");
 }
 
-const FOOTER_COLS_EN = [
+type FooterCol = {
+  heading: string;
+  links: string[];
+  isContact?: boolean;
+};
+
+const FOOTER_COLS_EN: FooterCol[] = [
   {
     heading: "About",
     links: [
@@ -84,7 +90,7 @@ const FOOTER_COLS_EN = [
   },
 ];
 
-const FOOTER_COLS_HI = [
+const FOOTER_COLS_HI: FooterCol[] = [
   {
     heading: "परिचय",
     links: [
@@ -132,13 +138,8 @@ const FOOTER_COLS_HI = [
   },
   {
     heading: "संपर्क",
-    links: [
-      "जवाहरलाल नेहरू भवन",
-      "नई दिल्ली - 110011",
-      "दूरभाष: +91-11-23012600",
-      "ईमेल: library@mea.gov.in",
-      "समय: सुबह 9 – शाम 5:30",
-    ],
+    links: [],
+    isContact: true,
   },
 ];
 
@@ -162,15 +163,19 @@ export default function Footer() {
               <h3 className="text-saffron font-semibold text-sm uppercase tracking-widest mb-3">
                 {col.heading}
               </h3>
-              <ul className="space-y-1.5">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <span className="text-[#F5D89E] text-sm cursor-pointer hover:text-white hover:underline transition-colors">
-                      {link}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {col.isContact ? (
+                <ContactColumn isHi={isHi} />
+              ) : (
+                <ul className="space-y-1.5">
+                  {col.links.map((link) => (
+                    <li key={link}>
+                      <span className="text-[#F5D89E] text-sm cursor-pointer hover:text-white hover:underline transition-colors">
+                        {link}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
@@ -226,6 +231,131 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function ContactColumn({ isHi }: { isHi: boolean }) {
+  return (
+    <ul className="space-y-3 text-sm">
+      <li>
+        <div className="flex items-start gap-2">
+          <LocationIcon />
+          <span className="text-[#F5D89E] leading-snug">
+            {isHi
+              ? "मिनिस्ट्री ऑफ एक्सटर्नल अफेयर्स लाइब्रेरी, सप्रू हाउस, बाराखम्बा रोड, नई दिल्ली - 110001"
+              : "Ministry of External Affairs Library, Sapru House, Barakhamba Road, New Delhi - 110001"}
+          </span>
+        </div>
+      </li>
+      <li>
+        <div className="flex items-center gap-2">
+          <PhoneIcon />
+          <span className="text-[#F5D89E]">
+            {isHi ? "011-23317246 Ext. 617" : "011-23317246 Ext. 617"}
+          </span>
+        </div>
+      </li>
+      <li>
+        <div className="flex items-center gap-2">
+          <MailIcon />
+          <a
+            href="mailto:dirlib@mea.gov.in"
+            className="text-[#B5D4F4] hover:text-white transition-colors underline-offset-2 hover:underline"
+          >
+            dirlib@mea.gov.in
+          </a>
+        </div>
+      </li>
+      <li>
+        <div className="flex items-center gap-2">
+          <CalendarIcon />
+          <span className="text-[#F5D89E] text-xs">
+            {isHi ? "अंतिम अपडेट: 31 मार्च 2026" : "Last Updated: 31 March 2026"}
+          </span>
+        </div>
+      </li>
+    </ul>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#B5D4F4"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ flexShrink: 0, marginTop: "2px" }}
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#B5D4F4"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.12-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#B5D4F4"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  );
+}
+
+function CalendarIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#B5D4F4"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
   );
 }
 

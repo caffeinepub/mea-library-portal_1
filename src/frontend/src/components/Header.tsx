@@ -339,9 +339,12 @@ export default function Header() {
                       }
                       aria-expanded={isOpen}
                       aria-haspopup="true"
-                      className={`flex items-center gap-1 px-3 py-3 text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] transition-colors whitespace-nowrap ${
-                        isActive ? "border-b-[#e8a020]" : "border-b-transparent"
+                      className={`flex items-center gap-1 px-4 py-[10px] text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] hover:bg-[#0f3d24] transition-colors whitespace-nowrap ${
+                        isActive
+                          ? "border-b-[#e8a020] bg-[#0f3d24]"
+                          : "border-b-transparent"
                       }`}
+                      style={{ borderRadius: "2px" }}
                     >
                       {link.label}
                       <ChevronIcon
@@ -353,9 +356,12 @@ export default function Header() {
                   ) : (
                     <Link
                       to={link.href}
-                      className={`block px-3 py-3 text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] transition-colors whitespace-nowrap ${
-                        isActive ? "border-b-[#e8a020]" : "border-b-transparent"
+                      className={`block px-4 py-[10px] text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] hover:bg-[#0f3d24] transition-colors whitespace-nowrap ${
+                        isActive
+                          ? "border-b-[#e8a020] bg-[#0f3d24]"
+                          : "border-b-transparent"
                       }`}
+                      style={{ borderRadius: "2px" }}
                     >
                       {link.label}
                     </Link>

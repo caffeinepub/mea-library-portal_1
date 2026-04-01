@@ -525,17 +525,6 @@ export default function HomePage() {
 
   return (
     <div id="main-content">
-      {/* Tricolor Strip */}
-      <div
-        aria-hidden="true"
-        style={{
-          width: "100%",
-          height: "5px",
-          background:
-            "linear-gradient(to right, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%)",
-        }}
-      />
-
       {/* Hero Slider */}
       <section
         className="relative h-[220px] md:h-[300px] lg:h-[440px] overflow-hidden"
@@ -740,7 +729,7 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {IR_DB_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
@@ -769,7 +758,7 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {ARCHIVAL_DB_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
@@ -834,7 +823,7 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {JOURNALS_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
@@ -863,7 +852,7 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {EBOOKS_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
@@ -892,7 +881,7 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
               {PRINT_BOOKS_ITEMS.map((item) => (
                 <PrintBookListItem key={item} name={item} />
               ))}

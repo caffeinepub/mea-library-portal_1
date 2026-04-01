@@ -140,16 +140,23 @@ export default function ChatbotWidget() {
   const quickOptions = isHi ? QUICK_OPTIONS_HI : QUICK_OPTIONS_EN;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div
+      className="fixed z-50 flex flex-col items-end gap-3"
+      style={{
+        bottom: "16px",
+        right: "16px",
+      }}
+    >
       {/* Chat window */}
       <dialog
         aria-label={isHi ? "पुस्तकालय से पूछें चैटबॉट" : "Ask Librarian chatbot"}
         aria-modal="true"
-        className="w-[320px] bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-[#e0e0e0] transition-all duration-300"
+        className="bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-[#e0e0e0] transition-all duration-300"
         style={{
-          height: "420px",
-          bottom: "80px",
+          width: "min(320px, calc(100vw - 32px))",
+          height: "min(420px, calc(100vh - 120px))",
           position: "absolute",
+          bottom: "calc(100% + 12px)",
           right: 0,
           transformOrigin: "bottom right",
           transform: isOpen

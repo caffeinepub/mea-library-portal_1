@@ -323,15 +323,15 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ── REVAMPED NAV BAR ── */}
+      {/* Nav Bar */}
       <nav
-        className="bg-[#003580] border-b-[3px] border-[#FF9933]"
+        className="bg-[#1a5c35]"
         aria-label={isHi ? "मुख्य नेविगेशन" : "Main navigation"}
         ref={navRef}
       >
         <div className="max-w-7xl mx-auto px-4">
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-stretch" role="menubar">
+          <ul className="hidden md:flex items-center">
             {NAV_LINKS.map((link, i) => {
               const isActive =
                 link.href === "/"
@@ -339,13 +339,6 @@ export default function Header() {
                   : currentPath === link.href;
               const hasDropdown = !!(link.dropdown && link.dropdown.length > 0);
               const isOpen = openDropdown === link.label;
-
-              const baseItemClass =
-                "flex items-center gap-1 px-5 py-4 text-[13.5px] font-medium text-white tracking-wide uppercase whitespace-nowrap cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933] focus-visible:ring-inset select-none";
-              const hoverClass = "hover:bg-white/10";
-              const activeClass = isActive
-                ? "bg-black/20 border-t-[3px] border-[#FF9933] font-semibold"
-                : "border-t-[3px] border-transparent";
 
               return (
                 <li
@@ -364,14 +357,16 @@ export default function Header() {
                       }
                       aria-expanded={isOpen}
                       aria-haspopup="true"
-                      role="menuitem"
-                      className={`${baseItemClass} ${hoverClass} ${activeClass} ${
-                        isOpen ? "bg-black/20" : ""
+                      className={`nav-item flex items-center gap-1 px-4 py-[10px] text-sm font-medium text-white border-b-[3px] transition-colors whitespace-nowrap ${
+                        isActive
+                          ? "active border-b-[#e8a020] bg-[#0f3d24]"
+                          : "border-b-transparent"
                       }`}
+                      style={{ borderRadius: "2px" }}
                     >
                       {link.label}
                       <ChevronIcon
-                        className={`transition-transform duration-200 opacity-70 ${
+                        className={`transition-transform duration-200 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                       />
@@ -379,8 +374,12 @@ export default function Header() {
                   ) : (
                     <Link
                       to={link.href}
-                      role="menuitem"
-                      className={`${baseItemClass} ${hoverClass} ${activeClass}`}
+                      className={`nav-item block px-4 py-[10px] text-sm font-medium text-white border-b-[3px] transition-colors whitespace-nowrap ${
+                        isActive
+                          ? "active border-b-[#e8a020] bg-[#0f3d24]"
+                          : "border-b-transparent"
+                      }`}
+                      style={{ borderRadius: "2px" }}
                     >
                       {link.label}
                     </Link>
@@ -390,14 +389,11 @@ export default function Header() {
                   {hasDropdown && (
                     <ul
                       role="menu"
-                      className={`absolute top-full left-0 z-50 min-w-[220px] bg-white rounded-b-lg overflow-hidden transition-all duration-200 ${
+                      className={`absolute top-full left-0 z-50 min-w-[210px] bg-white border border-[#e0e0e0] shadow-lg rounded-b transition-all duration-200 ${
                         isOpen
                           ? "opacity-100 translate-y-0 pointer-events-auto"
                           : "opacity-0 -translate-y-1 pointer-events-none"
                       }`}
-                      style={{
-                        boxShadow: "0 4px 16px rgba(0,0,56,0.12)",
-                      }}
                     >
                       {link.dropdown!.map((item) => (
                         <li key={item.label}>
@@ -405,7 +401,7 @@ export default function Header() {
                             to={item.href}
                             role="menuitem"
                             onClick={() => setOpenDropdown(null)}
-                            className="flex items-center px-4 py-2.5 text-[13px] text-[#003580] border-l-[3px] border-transparent hover:border-[#FF9933] hover:text-[#FF9933] hover:bg-[#FFF8F0] transition-all duration-150 whitespace-nowrap focus:outline-none focus-visible:bg-[#FFF8F0] focus-visible:border-[#FF9933]"
+                            className="flex items-center px-4 py-2.5 text-sm font-medium text-[#1E2B4A] hover:text-[#FF9933] hover:border-l-2 hover:border-[#FF9933] hover:pl-[14px] transition-all whitespace-nowrap border-l-2 border-transparent"
                           >
                             {item.label}
                           </Link>
@@ -419,14 +415,14 @@ export default function Header() {
           </ul>
 
           {/* Mobile hamburger toggle */}
-          <div className="md:hidden flex items-center justify-between py-2.5">
-            <span className="text-white/80 text-[13px] font-medium tracking-wide uppercase">
+          <div className="md:hidden flex items-center justify-between py-2">
+            <span className="text-white text-sm font-medium">
               {isHi ? "नेविगेशन" : "Navigation"}
             </span>
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="text-white p-2 hover:bg-white/10 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
+              className="text-white p-2"
               aria-label={
                 mobileOpen
                   ? isHi
@@ -442,9 +438,9 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Nav Drawer */}
+          {/* Mobile Nav */}
           {mobileOpen && (
-            <ul className="md:hidden bg-[#002b6e] rounded-b-lg mb-1 overflow-hidden">
+            <ul className="md:hidden pb-2">
               {NAV_LINKS.map((link, i) => {
                 const hasDropdown = !!(
                   link.dropdown && link.dropdown.length > 0
@@ -452,27 +448,24 @@ export default function Header() {
                 const isMobileOpen = !!openMobileDropdowns[link.label];
 
                 return (
-                  <li
-                    key={`${link.label}-mob-${i}`}
-                    className="border-b border-white/10 last:border-b-0"
-                  >
+                  <li key={`${link.label}-mob-${i}`}>
                     {hasDropdown ? (
                       <>
                         <button
                           type="button"
                           onClick={() => toggleMobileDropdown(link.label)}
                           aria-expanded={isMobileOpen}
-                          className="w-full flex items-center justify-between px-4 py-3 text-[13.5px] text-white font-medium tracking-wide uppercase hover:bg-white/10 hover:text-[#FF9933] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
+                          className="w-full flex items-center justify-between px-2 py-2 text-sm text-white hover:text-[#FF9933] transition-colors"
                         >
                           <span>{link.label}</span>
                           <ChevronIcon
-                            className={`transition-transform duration-200 opacity-70 ${
+                            className={`transition-transform duration-200 ${
                               isMobileOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
                         {isMobileOpen && (
-                          <ul className="bg-[#001f52] pb-1">
+                          <ul className="pl-4 pb-1 space-y-0.5">
                             {link.dropdown!.map((item) => (
                               <li key={item.label}>
                                 <Link
@@ -481,7 +474,7 @@ export default function Header() {
                                     setMobileOpen(false);
                                     setOpenMobileDropdowns({});
                                   }}
-                                  className="flex items-center px-6 py-2.5 text-[13px] text-white/70 border-l-[3px] border-[#FF9933]/30 hover:text-[#FF9933] hover:border-[#FF9933] hover:bg-white/5 transition-all focus:outline-none focus-visible:text-[#FF9933]"
+                                  className="block px-2 py-1.5 text-sm text-white/80 hover:text-[#FF9933] border-l-2 border-[#FF9933]/40 hover:border-[#FF9933] transition-colors"
                                 >
                                   {item.label}
                                 </Link>
@@ -494,7 +487,7 @@ export default function Header() {
                       <Link
                         to={link.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block px-4 py-3 text-[13.5px] text-white font-medium tracking-wide uppercase hover:bg-white/10 hover:text-[#FF9933] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
+                        className="block px-2 py-2 text-sm text-white hover:text-[#FF9933]"
                       >
                         {link.label}
                       </Link>
@@ -551,8 +544,8 @@ function SearchIcon() {
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <svg
-      width="22"
-      height="22"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

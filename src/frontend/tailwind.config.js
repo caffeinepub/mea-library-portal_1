@@ -16,20 +16,29 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["'Noto Sans'", "'Noto Sans Devanagari'", "sans-serif"],
+        sans: ["'Plus Jakarta Sans'", "'Noto Sans'", "'Noto Sans Devanagari'", "sans-serif"],
+        display: ["'Playfair Display'", "'Noto Sans'", "serif"],
+        noto: ["'Noto Sans'", "'Noto Sans Devanagari'", "sans-serif"],
       },
       colors: {
+        navy: {
+          DEFAULT: "#003580",
+          dark: "#002460",
+          light: "#1a4fa0",
+          tint: "#E8F0FB",
+        },
+        saffron: {
+          DEFAULT: "#FF9933",
+          light: "#FFAD5C",
+          pale: "#FFF8F0",
+          deep: "#e8871e",
+        },
+        indiagr: "#138808",
         olive: {
           DEFAULT: "#2E5339",
           dark: "#1F3B27",
           light: "#3D6B4A",
         },
-        saffron: {
-          DEFAULT: "#FF9933",
-          light: "#FFAD5C",
-          pale: "#FFF3E0",
-        },
-        indiagr: "#138808",
         border: "oklch(var(--border))",
         input: "oklch(var(--input))",
         ring: "oklch(var(--ring) / <alpha-value>)",
@@ -88,6 +97,8 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
+        card: "0 2px 12px rgba(0,53,128,0.07)",
+        "card-hover": "0 8px 24px rgba(0,53,128,0.15)",
       },
       keyframes: {
         "accordion-down": {

@@ -279,7 +279,7 @@ export default function Header() {
 
       {/* White Branding Row */}
       <div className="bg-white border-b border-[#e0e0e0] py-3 sm:py-4 pl-[20px] pr-4">
-        <div className="max-w-7xl mx-auto flex items-center gap-3 sm:gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
           <Link
             to="/"
             className="flex items-center gap-4 shrink-0"
@@ -302,18 +302,36 @@ export default function Header() {
               </p>
             </div>
           </Link>
+          {/* Government initiative logos */}
+          <div className="hidden sm:flex items-center gap-4 ml-auto shrink-0">
+            <img
+              src="/assets/dg_india-019d47b2-bbb4-7359-bf98-e2ed9d2a419e.png"
+              alt="Digital India"
+              className="h-10 w-auto object-contain"
+            />
+            <img
+              src="/assets/mygov_0-019d47b2-bbbb-711d-b7a7-1b5c2a802db0.png"
+              alt="MyGov"
+              className="h-10 w-auto object-contain"
+            />
+            <img
+              src="/assets/swach-019d47b2-bbc8-77a9-845a-9a00ca4fc8d0.jpg"
+              alt="Swachh Bharat"
+              className="h-10 w-auto object-contain"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Nav Bar */}
+      {/* ── REVAMPED NAV BAR ── */}
       <nav
-        className="bg-[#1a5c35]"
+        className="bg-[#003580] border-b-[3px] border-[#FF9933]"
         aria-label={isHi ? "मुख्य नेविगेशन" : "Main navigation"}
         ref={navRef}
       >
         <div className="max-w-7xl mx-auto px-4">
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center">
+          <ul className="hidden md:flex items-stretch" role="menubar">
             {NAV_LINKS.map((link, i) => {
               const isActive =
                 link.href === "/"
@@ -321,6 +339,13 @@ export default function Header() {
                   : currentPath === link.href;
               const hasDropdown = !!(link.dropdown && link.dropdown.length > 0);
               const isOpen = openDropdown === link.label;
+
+              const baseItemClass =
+                "flex items-center gap-1 px-5 py-4 text-[13.5px] font-medium text-white tracking-wide uppercase whitespace-nowrap cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933] focus-visible:ring-inset select-none";
+              const hoverClass = "hover:bg-white/10";
+              const activeClass = isActive
+                ? "bg-black/20 border-t-[3px] border-[#FF9933] font-semibold"
+                : "border-t-[3px] border-transparent";
 
               return (
                 <li
@@ -339,16 +364,14 @@ export default function Header() {
                       }
                       aria-expanded={isOpen}
                       aria-haspopup="true"
-                      className={`flex items-center gap-1 px-4 py-[10px] text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] hover:bg-[#0f3d24] transition-colors whitespace-nowrap ${
-                        isActive
-                          ? "border-b-[#e8a020] bg-[#0f3d24]"
-                          : "border-b-transparent"
+                      role="menuitem"
+                      className={`${baseItemClass} ${hoverClass} ${activeClass} ${
+                        isOpen ? "bg-black/20" : ""
                       }`}
-                      style={{ borderRadius: "2px" }}
                     >
                       {link.label}
                       <ChevronIcon
-                        className={`transition-transform duration-200 ${
+                        className={`transition-transform duration-200 opacity-70 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                       />
@@ -356,12 +379,8 @@ export default function Header() {
                   ) : (
                     <Link
                       to={link.href}
-                      className={`block px-4 py-[10px] text-sm font-medium text-white border-b-[3px] hover:border-b-[#e8a020] hover:bg-[#0f3d24] transition-colors whitespace-nowrap ${
-                        isActive
-                          ? "border-b-[#e8a020] bg-[#0f3d24]"
-                          : "border-b-transparent"
-                      }`}
-                      style={{ borderRadius: "2px" }}
+                      role="menuitem"
+                      className={`${baseItemClass} ${hoverClass} ${activeClass}`}
                     >
                       {link.label}
                     </Link>
@@ -371,11 +390,14 @@ export default function Header() {
                   {hasDropdown && (
                     <ul
                       role="menu"
-                      className={`absolute top-full left-0 z-50 min-w-[210px] bg-white border border-[#e0e0e0] shadow-lg rounded-b transition-all duration-200 ${
+                      className={`absolute top-full left-0 z-50 min-w-[220px] bg-white rounded-b-lg overflow-hidden transition-all duration-200 ${
                         isOpen
                           ? "opacity-100 translate-y-0 pointer-events-auto"
                           : "opacity-0 -translate-y-1 pointer-events-none"
                       }`}
+                      style={{
+                        boxShadow: "0 4px 16px rgba(0,0,56,0.12)",
+                      }}
                     >
                       {link.dropdown!.map((item) => (
                         <li key={item.label}>
@@ -383,7 +405,7 @@ export default function Header() {
                             to={item.href}
                             role="menuitem"
                             onClick={() => setOpenDropdown(null)}
-                            className="flex items-center px-4 py-2.5 text-sm font-medium text-[#1E2B4A] hover:text-[#FF9933] hover:border-l-2 hover:border-[#FF9933] hover:pl-[14px] transition-all whitespace-nowrap border-l-2 border-transparent"
+                            className="flex items-center px-4 py-2.5 text-[13px] text-[#003580] border-l-[3px] border-transparent hover:border-[#FF9933] hover:text-[#FF9933] hover:bg-[#FFF8F0] transition-all duration-150 whitespace-nowrap focus:outline-none focus-visible:bg-[#FFF8F0] focus-visible:border-[#FF9933]"
                           >
                             {item.label}
                           </Link>
@@ -397,14 +419,14 @@ export default function Header() {
           </ul>
 
           {/* Mobile hamburger toggle */}
-          <div className="md:hidden flex items-center justify-between py-2">
-            <span className="text-white text-sm font-medium">
+          <div className="md:hidden flex items-center justify-between py-2.5">
+            <span className="text-white/80 text-[13px] font-medium tracking-wide uppercase">
               {isHi ? "नेविगेशन" : "Navigation"}
             </span>
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="text-white p-2"
+              className="text-white p-2 hover:bg-white/10 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
               aria-label={
                 mobileOpen
                   ? isHi
@@ -420,9 +442,9 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Nav */}
+          {/* Mobile Nav Drawer */}
           {mobileOpen && (
-            <ul className="md:hidden pb-2">
+            <ul className="md:hidden bg-[#002b6e] rounded-b-lg mb-1 overflow-hidden">
               {NAV_LINKS.map((link, i) => {
                 const hasDropdown = !!(
                   link.dropdown && link.dropdown.length > 0
@@ -430,24 +452,27 @@ export default function Header() {
                 const isMobileOpen = !!openMobileDropdowns[link.label];
 
                 return (
-                  <li key={`${link.label}-mob-${i}`}>
+                  <li
+                    key={`${link.label}-mob-${i}`}
+                    className="border-b border-white/10 last:border-b-0"
+                  >
                     {hasDropdown ? (
                       <>
                         <button
                           type="button"
                           onClick={() => toggleMobileDropdown(link.label)}
                           aria-expanded={isMobileOpen}
-                          className="w-full flex items-center justify-between px-2 py-2 text-sm text-white hover:text-[#FF9933] transition-colors"
+                          className="w-full flex items-center justify-between px-4 py-3 text-[13.5px] text-white font-medium tracking-wide uppercase hover:bg-white/10 hover:text-[#FF9933] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
                         >
                           <span>{link.label}</span>
                           <ChevronIcon
-                            className={`transition-transform duration-200 ${
+                            className={`transition-transform duration-200 opacity-70 ${
                               isMobileOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
                         {isMobileOpen && (
-                          <ul className="pl-4 pb-1 space-y-0.5">
+                          <ul className="bg-[#001f52] pb-1">
                             {link.dropdown!.map((item) => (
                               <li key={item.label}>
                                 <Link
@@ -456,7 +481,7 @@ export default function Header() {
                                     setMobileOpen(false);
                                     setOpenMobileDropdowns({});
                                   }}
-                                  className="block px-2 py-1.5 text-sm text-white/80 hover:text-[#FF9933] border-l-2 border-[#FF9933]/40 hover:border-[#FF9933] transition-colors"
+                                  className="flex items-center px-6 py-2.5 text-[13px] text-white/70 border-l-[3px] border-[#FF9933]/30 hover:text-[#FF9933] hover:border-[#FF9933] hover:bg-white/5 transition-all focus:outline-none focus-visible:text-[#FF9933]"
                                 >
                                   {item.label}
                                 </Link>
@@ -469,7 +494,7 @@ export default function Header() {
                       <Link
                         to={link.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block px-2 py-2 text-sm text-white hover:text-[#FF9933]"
+                        className="block px-4 py-3 text-[13.5px] text-white font-medium tracking-wide uppercase hover:bg-white/10 hover:text-[#FF9933] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF9933]"
                       >
                         {link.label}
                       </Link>
@@ -526,8 +551,8 @@ function SearchIcon() {
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <svg
-      width="24"
-      height="24"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

@@ -141,10 +141,11 @@ export default function ChatbotWidget() {
 
   return (
     <div
-      className="fixed z-50 flex flex-col items-end gap-3"
+      className="fixed flex flex-col items-end gap-3"
       style={{
-        bottom: "16px",
-        right: "16px",
+        bottom: "20px",
+        right: "20px",
+        zIndex: 9999,
       }}
     >
       {/* Chat window */}
@@ -153,7 +154,7 @@ export default function ChatbotWidget() {
         aria-modal="true"
         className="bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-[#e0e0e0] transition-all duration-300"
         style={{
-          width: "min(320px, calc(100vw - 32px))",
+          width: "min(320px, calc(100vw - 40px))",
           height: "min(420px, calc(100vh - 120px))",
           position: "absolute",
           bottom: "calc(100% + 12px)",
@@ -265,7 +266,7 @@ export default function ChatbotWidget() {
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
-        className="flex items-center gap-2 px-5 py-3 rounded-full bg-[#FF9933] text-white font-semibold text-sm shadow-lg hover:bg-[#e8871e] transition-colors"
+        className="flex items-center gap-2 px-5 py-3 rounded-full bg-[#FF9933] text-white font-semibold text-sm shadow-lg hover:bg-[#e68a00] hover:shadow-xl hover:scale-105 transition-all duration-200"
         aria-label={isHi ? "पुस्तकालय से पूछें" : "Ask Librarian"}
         aria-expanded={isOpen}
         data-ocid="chatbot.open_modal_button"

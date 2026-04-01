@@ -398,7 +398,6 @@ const RESOURCE_TABS_HI = [
   "प्रिंट पुस्तकें",
 ];
 
-// External link SVG icon
 function ExternalLinkIcon({ color = "#003580" }: { color?: string }) {
   return (
     <svg
@@ -420,57 +419,43 @@ function ExternalLinkIcon({ color = "#003580" }: { color?: string }) {
   );
 }
 
-function ResourceListItem({ name }: { name: string }) {
+function ResourceListItem({
+  name,
+  access = "MyLOFT",
+}: { name: string; access?: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="flex items-center justify-between py-2.5 border-b border-[#f0f0f0] last:border-0 cursor-pointer group"
+      className="flex items-center justify-between py-3 border-b border-[#edf0f7] last:border-0 cursor-pointer rounded-md px-3 -mx-3 transition-all duration-150"
+      style={{
+        background: hovered ? "#EEF3FC" : "transparent",
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <span className="flex items-center gap-2">
         <ExternalLinkIcon color={hovered ? "#FF9933" : "#003580"} />
         <span
-          className="text-sm"
+          className="text-sm font-medium"
           style={{
             color: hovered ? "#FF9933" : "#003580",
             textDecoration: hovered ? "underline" : "none",
             transition: "color 0.15s ease",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
           }}
         >
           {name}
         </span>
       </span>
-      <span className="text-[11px] text-[#888] bg-[#f5f5f5] px-2 py-0.5 rounded">
-        via MyLOFT
-      </span>
-    </div>
-  );
-}
-
-function PrintBookListItem({ name }: { name: string }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      className="flex items-center justify-between py-2.5 border-b border-[#f0f0f0] last:border-0 cursor-pointer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <span className="flex items-center gap-2">
-        <ExternalLinkIcon color={hovered ? "#FF9933" : "#003580"} />
-        <span
-          className="text-sm"
-          style={{
-            color: hovered ? "#FF9933" : "#003580",
-            textDecoration: hovered ? "underline" : "none",
-            transition: "color 0.15s ease",
-          }}
-        >
-          {name}
-        </span>
-      </span>
-      <span className="text-[11px] text-[#888] bg-[#f5f5f5] px-2 py-0.5 rounded">
-        via OPAC
+      <span
+        className="text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0"
+        style={{
+          background: "#E8F0FB",
+          color: "#003580",
+          letterSpacing: "0.04em",
+        }}
+      >
+        via {access}
       </span>
     </div>
   );
@@ -480,18 +465,33 @@ function NewspaperCard({ name }: { name: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="px-3 py-2.5 rounded text-sm cursor-pointer transition-all duration-200"
+      className="px-4 py-3 cursor-pointer transition-all duration-200 rounded-lg"
       style={{
-        background: "#fff",
-        border: hovered ? "1px solid #FF9933" : "1px solid #E0E0E0",
-        borderRadius: "6px",
-        color: hovered ? "#FF9933" : "#003580",
-        transition: "border-color 0.15s ease, color 0.15s ease",
+        background: hovered ? "#FFF8F0" : "#fff",
+        border: hovered ? "1.5px solid #FF9933" : "1.5px solid #E0E4EF",
+        color: hovered ? "#e8871e" : "#003580",
+        boxShadow: hovered
+          ? "0 4px 12px rgba(0,53,128,0.09)"
+          : "0 1px 4px rgba(0,53,128,0.05)",
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontSize: "13px",
+        fontWeight: 500,
+        transition: "all 0.18s ease",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {name}
+    </div>
+  );
+}
+
+// Redesigned section heading component
+function SectionHeading({ label, title }: { label: string; title: string }) {
+  return (
+    <div className="mb-10">
+      <span className="section-label">{label}</span>
+      <h2 className="section-title">{title}</h2>
     </div>
   );
 }
@@ -525,7 +525,7 @@ export default function HomePage() {
 
   return (
     <div id="main-content">
-      {/* Hero Slider */}
+      {/* ─── Hero Slider ─────────────────────────────── */}
       <section
         className="relative h-[220px] md:h-[300px] lg:h-[440px] overflow-hidden"
         aria-label={isHi ? "हीरो बैनर" : "Hero banner"}
@@ -550,8 +550,7 @@ export default function HomePage() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(0,53,128,0.75) 40%, rgba(0,0,0,0.2) 100%)",
-                opacity: 0.78,
+                  "linear-gradient(to right, rgba(0,53,128,0.82) 42%, rgba(0,0,0,0.18) 100%)",
               }}
               aria-hidden="true"
             />
@@ -559,34 +558,93 @@ export default function HomePage() {
         ))}
 
         <div className="relative z-10 w-full h-full flex items-center">
-          <div className="max-w-[560px] pl-[30px] md:pl-[60px] pr-4">
-            <p className="text-[#FF9933] text-xs uppercase tracking-[0.15em] font-semibold mb-3">
+          <div className="max-w-[580px] pl-[30px] md:pl-[64px] pr-4">
+            <p
+              style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: "11px",
+                fontWeight: 600,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#FF9933",
+                marginBottom: "10px",
+              }}
+            >
               {isHi ? "विदेश मंत्रालय" : "Ministry of External Affairs"}
             </p>
             <h1
-              className="text-white font-semibold leading-tight mb-3"
-              style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+              className="text-white font-bold leading-tight mb-3"
+              style={{
+                fontSize: "clamp(22px, 3vw, 40px)",
+                fontFamily: "'Playfair Display', 'Noto Sans', serif",
+                textShadow: "0 2px 16px rgba(0,0,0,0.4)",
+              }}
             >
               {slides[slide].title}
             </h1>
             <p
-              className="text-white mb-6"
-              style={{ fontSize: "17px", opacity: 0.92 }}
+              className="text-white"
+              style={{
+                fontSize: "17px",
+                opacity: 0.92,
+                fontFamily: "'Plus Jakarta Sans', 'Noto Sans', sans-serif",
+                fontWeight: 400,
+              }}
             >
               {slides[slide].subtitle}
             </p>
-            <div className="flex gap-4 flex-wrap" style={{ marginTop: "24px" }}>
+            <div className="flex gap-4 flex-wrap" style={{ marginTop: "28px" }}>
               <button
                 type="button"
                 data-ocid="hero.primary_button"
-                className="px-5 py-2.5 bg-[#FF9933] text-white font-semibold text-sm rounded hover:bg-[#e8871e] transition-colors"
+                style={{
+                  background: "#FF9933",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  padding: "10px 22px",
+                  borderRadius: "4px",
+                  border: "none",
+                  cursor: "pointer",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  letterSpacing: "0.02em",
+                  boxShadow: "0 2px 10px rgba(255,153,51,0.35)",
+                  transition: "background 0.18s ease, box-shadow 0.18s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#e8871e";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "संग्रह देखें" : "Browse Collections"}
               </button>
               <button
                 type="button"
                 data-ocid="hero.secondary_button"
-                className="px-5 py-2.5 border-2 border-white text-white font-semibold text-sm rounded hover:bg-white/10 transition-colors"
+                style={{
+                  background: "transparent",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  padding: "9px 22px",
+                  borderRadius: "4px",
+                  border: "2px solid rgba(255,255,255,0.75)",
+                  cursor: "pointer",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  transition: "background 0.18s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "rgba(255,255,255,0.12)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "transparent";
+                }}
               >
                 {isHi ? "ई-संसाधन देखें" : "Explore E-Resources"}
               </button>
@@ -631,28 +689,47 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MEA Reading Room */}
+      <hr className="section-divider" />
+
+      {/* ─── MEA Reading Room ───────────────────────── */}
       <section
-        className="bg-[#F5F3EE] py-12 px-4"
+        className="py-14 px-6"
+        style={{ background: "oklch(0.97 0.005 250)" }}
         aria-labelledby="reading-room-heading"
       >
         <div className="max-w-7xl mx-auto">
-          <h2
-            id="reading-room-heading"
-            className="text-xl font-bold text-olive mb-2"
-          >
-            {isHi ? "एमईए पठन कक्ष" : "MEA Reading Room"}
-          </h2>
-          <div className="w-12 h-1 bg-[#FF9933] mb-8" aria-hidden="true" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <SectionHeading
+            label={isHi ? "डिजिटल संसाधन" : "Digital Resources"}
+            title={isHi ? "एमईए पठन कक्ष" : "MEA Reading Room"}
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {readingRoom.map((card) => (
               <div
                 key={card.title}
                 data-ocid="reading-room.card"
-                className="bg-white border border-border rounded p-5 flex flex-col border-t-4 transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:bg-[#FFFAF2] cursor-pointer"
-                style={{ borderTopColor: "#FF9933", willChange: "transform" }}
+                className="bg-white rounded-lg p-5 flex flex-col cursor-pointer transition-all duration-200"
+                style={{
+                  borderTop: "3px solid #FF9933",
+                  boxShadow: "0 2px 12px rgba(0,53,128,0.07)",
+                  willChange: "transform",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "scale(1.03)";
+                  el.style.boxShadow = "0 8px 24px rgba(0,53,128,0.15)";
+                  el.style.background = "#FFF8F0";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "";
+                  el.style.boxShadow = "0 2px 12px rgba(0,53,128,0.07)";
+                  el.style.background = "#fff";
+                }}
               >
-                <h3 className="font-semibold text-olive text-sm mb-2">
+                <h3
+                  className="font-semibold text-[#003580] text-sm mb-2"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
                   {card.title}
                 </h3>
                 <p className="text-[#555] text-sm leading-relaxed flex-1">
@@ -660,7 +737,22 @@ export default function HomePage() {
                 </p>
                 <button
                   type="button"
-                  className="mt-4 self-start px-4 py-1.5 bg-[#FF9933] text-white text-xs font-semibold rounded hover:bg-[#e8871e] transition-colors"
+                  className="mt-4 self-start px-4 py-1.5 text-xs font-semibold rounded transition-colors"
+                  style={{
+                    background: "#003580",
+                    color: "#fff",
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    letterSpacing: "0.03em",
+                    transition: "background 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#FF9933";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#003580";
+                  }}
                 >
                   {isHi ? "अभी पहुंचें" : "Access Now"}
                 </button>
@@ -670,25 +762,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Resources – 6 Tabs */}
+      <hr className="section-divider" />
+
+      {/* ─── Resources – 6 Tabs ─────────────────────── */}
       <section
-        className="bg-white py-12 px-4"
+        className="bg-white py-14 px-6"
         aria-labelledby="resources-heading"
       >
         <div className="max-w-7xl mx-auto">
-          <h2
-            id="resources-heading"
-            className="text-xl font-bold text-olive mb-2"
-          >
-            {isHi ? "संसाधन" : "Resources"}
-          </h2>
-          <div className="w-12 h-1 bg-[#FF9933] mb-6" aria-hidden="true" />
+          <SectionHeading
+            label={isHi ? "पुस्तकालय संग्रह" : "Library Collections"}
+            title={isHi ? "संसाधन" : "Resources"}
+          />
 
-          {/* Tab Bar */}
+          {/* Pill-style Tab Bar */}
           <div
             role="tablist"
             aria-label={isHi ? "संसाधन श्रेणियां" : "Resource categories"}
-            className="flex border-b border-[#E0E0E0] mb-6 overflow-x-auto"
+            className="flex gap-2 mb-8 overflow-x-auto pb-1"
             style={{ scrollbarWidth: "none" }}
           >
             {resourceTabs.map((tab, idx) => (
@@ -701,15 +792,16 @@ export default function HomePage() {
                 aria-controls={`resource-panel-${idx}`}
                 data-ocid="resources.tab"
                 onClick={() => setActiveResourceTab(idx)}
-                className="text-sm font-medium whitespace-nowrap px-5 py-3 transition-all duration-200 border-b-0 flex-shrink-0"
+                className="text-sm whitespace-nowrap px-4 py-2 rounded-full flex-shrink-0 transition-all duration-200 border"
                 style={{
-                  color: activeResourceTab === idx ? "#003580" : "#666",
-                  fontWeight: activeResourceTab === idx ? 600 : 500,
-                  borderBottom:
-                    activeResourceTab === idx
-                      ? "3px solid #FF9933"
-                      : "3px solid transparent",
-                  marginBottom: "-1px",
+                  background:
+                    activeResourceTab === idx ? "#003580" : "transparent",
+                  color: activeResourceTab === idx ? "#fff" : "#666",
+                  fontWeight: activeResourceTab === idx ? 600 : 400,
+                  borderColor:
+                    activeResourceTab === idx ? "#003580" : "#D0D6E4",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontSize: "13px",
                 }}
               >
                 {tab}
@@ -729,18 +821,32 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
               {IR_DB_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
-              <p className="mt-4 text-xs text-[#888] italic">
+            </div>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
                 {isHi
                   ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
                   : "All resources accessed via MyLOFT platform"}
               </p>
               <a
                 href="https://mealibrary.gov.in"
-                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#003580";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "अभी पहुंचें →" : "Access Now →"}
               </a>
@@ -758,18 +864,32 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
               {ARCHIVAL_DB_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
-              <p className="mt-4 text-xs text-[#888] italic">
+            </div>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
                 {isHi
                   ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
                   : "All resources accessed via MyLOFT platform"}
               </p>
               <a
                 href="https://mealibrary.gov.in"
-                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#003580";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "अभी पहुंचें →" : "Access Now →"}
               </a>
@@ -792,24 +912,33 @@ export default function HomePage() {
                 <NewspaperCard key={item} name={item} />
               ))}
             </div>
-            <div className="flex items-center gap-2 py-3 border-t border-[#f0f0f0] mt-2">
-              <span className="text-sm font-medium text-[#003580]">
+            <div
+              className="flex items-center gap-3 py-3 px-4 rounded-lg mt-2"
+              style={{ background: "#EEF3FC", border: "1px solid #D0DCEF" }}
+            >
+              <span className="text-sm font-medium text-[#003580] flex-1">
                 {isHi
                   ? "PressReader – अन्य समाचार पत्र और पत्रिकाएं MyLOFT के माध्यम से"
                   : "PressReader – Access other newspapers & magazines via MyLOFT"}
               </span>
               <a
                 href="https://mealibrary.gov.in"
-                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors whitespace-nowrap"
+                className="text-sm font-semibold whitespace-nowrap"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
               >
                 {isHi ? "पहुंचें →" : "Access →"}
               </a>
             </div>
-            <p className="mt-3 text-xs text-[#888] italic">
-              {isHi
-                ? "सभी संसाधन MyLOFT के माध्यम से"
-                : "All resources accessed via MyLOFT"}
-            </p>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
+                {isHi
+                  ? "सभी संसाधन MyLOFT के माध्यम से"
+                  : "All resources accessed via MyLOFT"}
+              </p>
+            </div>
           </div>
 
           {/* Tab 3: Online Journals */}
@@ -823,18 +952,32 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
               {JOURNALS_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
-              <p className="mt-4 text-xs text-[#888] italic">
+            </div>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
                 {isHi
                   ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
                   : "All resources accessed via MyLOFT platform"}
               </p>
               <a
                 href="https://mealibrary.gov.in"
-                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#003580";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "अभी पहुंचें →" : "Access Now →"}
               </a>
@@ -852,18 +995,32 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
               {EBOOKS_ITEMS.map((item) => (
                 <ResourceListItem key={item} name={item} />
               ))}
-              <p className="mt-4 text-xs text-[#888] italic">
+            </div>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
                 {isHi
                   ? "सभी संसाधन MyLOFT प्लेटफॉर्म के माध्यम से उपलब्ध"
                   : "All resources accessed via MyLOFT platform"}
               </p>
               <a
                 href="https://mealibrary.gov.in"
-                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#003580";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "अभी पहुंचें →" : "Access Now →"}
               </a>
@@ -881,18 +1038,32 @@ export default function HomePage() {
               transition: "opacity 0.2s ease",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 max-w-2xl">
               {PRINT_BOOKS_ITEMS.map((item) => (
-                <PrintBookListItem key={item} name={item} />
+                <ResourceListItem key={item} name={item} access="OPAC" />
               ))}
-              <p className="mt-4 text-xs text-[#888] italic">
+            </div>
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#edf0f7]">
+              <p className="text-xs text-[#888] italic">
                 {isHi
                   ? "OPAC (ऑनलाइन सार्वजनिक एक्सेस कैटलॉग) के माध्यम से मुद्रित पुस्तक कैटलॉग खोजें"
                   : "Search print book catalogue via Online Public Access Catalogue (OPAC)"}
               </p>
               <a
                 href="https://mealibrary.gov.in"
-                className="inline-block mt-4 text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#003580";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "#FF9933";
+                }}
               >
                 {isHi ? "OPAC में खोजें →" : "Search OPAC →"}
               </a>
@@ -901,38 +1072,71 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Digital Services */}
+      <hr className="section-divider" />
+
+      {/* ─── Digital Services ───────────────────────── */}
       <section
-        className="bg-[#FAFAF7] py-12 px-4"
+        className="py-14 px-6"
+        style={{ background: "oklch(0.97 0.005 250)" }}
         aria-labelledby="services-heading"
       >
         <div className="max-w-7xl mx-auto">
-          <h2
-            id="services-heading"
-            className="text-xl font-bold text-olive mb-2"
-          >
-            {isHi ? "डिजिटल सेवाएं" : "Digital Services"}
-          </h2>
-          <div className="w-12 h-1 bg-[#FF9933] mb-8" aria-hidden="true" />
+          <SectionHeading
+            label={isHi ? "ऑनलाइन सेवाएं" : "Online Services"}
+            title={isHi ? "डिजिटल सेवाएं" : "Digital Services"}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {digitalServices.map((svc) => (
               <div
                 key={svc.title}
-                className="bg-white border border-border rounded p-6 flex flex-col transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:bg-[#FFFAF2] cursor-pointer"
+                className="bg-white rounded-lg p-6 flex flex-col cursor-pointer transition-all duration-200"
                 style={{
-                  borderTop: "4px solid #FF9933",
+                  borderTop: "3px solid #FF9933",
+                  boxShadow: "0 2px 12px rgba(0,53,128,0.07)",
                   willChange: "transform",
                 }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "scale(1.03)";
+                  el.style.boxShadow = "0 8px 24px rgba(0,53,128,0.15)";
+                  el.style.background = "#FFF8F0";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "";
+                  el.style.boxShadow = "0 2px 12px rgba(0,53,128,0.07)";
+                  el.style.background = "#fff";
+                }}
               >
-                <div className="text-olive mb-3">
+                <div className="text-[#003580] mb-4 opacity-80">
                   <svc.icon />
                 </div>
-                <h3 className="font-semibold text-olive mb-2">{svc.title}</h3>
-                <p className="text-[#555] text-sm flex-1 mb-4">{svc.desc}</p>
+                <h3
+                  className="font-semibold text-[#003580] mb-2"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  {svc.title}
+                </h3>
+                <p className="text-[#555] text-sm flex-1 mb-5 leading-relaxed">
+                  {svc.desc}
+                </p>
                 <Link
                   to={svc.href}
-                  className="self-start px-4 py-1.5 bg-[#FF9933] text-white text-sm font-semibold rounded hover:bg-[#e8871e] transition-colors"
+                  className="self-start px-4 py-2 text-white text-xs font-semibold rounded transition-colors"
+                  style={{
+                    background: "#FF9933",
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    letterSpacing: "0.03em",
+                  }}
                   data-ocid="services.primary_button"
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "#003580";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background =
+                      "#FF9933";
+                  }}
                 >
                   {isHi ? "अभी आवेदन करें" : "Apply Now"}
                 </Link>
@@ -942,27 +1146,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Announcements & News – Tab UI */}
+      <hr className="section-divider" />
+
+      {/* ─── Announcements & News – Tab UI ─────────── */}
       <section
-        className="bg-white py-12 px-4"
+        className="bg-white py-8 px-6"
         aria-labelledby="announcements-heading"
       >
         <div className="max-w-7xl mx-auto">
-          <h2
-            id="announcements-heading"
-            className="text-xl font-bold text-olive mb-2"
-          >
-            {isHi ? "घोषणाएं एवं समाचार" : "Announcements & News"}
-          </h2>
-          <div className="w-12 h-1 bg-[#FF9933] mb-6" aria-hidden="true" />
+          <SectionHeading
+            label={isHi ? "नवीनतम अपडेट" : "Latest Updates"}
+            title={isHi ? "घोषणाएं एवं समाचार" : "Announcements & News"}
+          />
 
-          {/* Tab Bar */}
+          {/* Pill-style Tab Bar */}
           <div
             role="tablist"
             aria-label={
               isHi ? "घोषणाएं एवं समाचार टैब" : "Announcements and News tabs"
             }
-            className="flex border-b border-[#E0E0E0] mb-6"
+            className="flex gap-2 mb-8"
           >
             <button
               type="button"
@@ -972,16 +1175,19 @@ export default function HomePage() {
               aria-controls="ann-panel-announcements"
               data-ocid="announcements.tab"
               onClick={() => setActiveAnnouncementTab("announcements")}
-              className="text-[15px] font-medium px-6 py-3 transition-all duration-200"
+              className="px-5 py-2 rounded-full text-sm font-medium border transition-all duration-200"
               style={{
-                color: "#003580",
-                fontWeight:
-                  activeAnnouncementTab === "announcements" ? 600 : 500,
-                borderBottom:
+                background:
                   activeAnnouncementTab === "announcements"
-                    ? "3px solid #FF9933"
-                    : "3px solid transparent",
-                marginBottom: "-1px",
+                    ? "#003580"
+                    : "transparent",
+                color:
+                  activeAnnouncementTab === "announcements" ? "#fff" : "#666",
+                borderColor:
+                  activeAnnouncementTab === "announcements"
+                    ? "#003580"
+                    : "#D0D6E4",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
               }}
             >
               {isHi ? "घोषणाएं" : "Announcements"}
@@ -994,15 +1200,14 @@ export default function HomePage() {
               aria-controls="ann-panel-news"
               data-ocid="news.tab"
               onClick={() => setActiveAnnouncementTab("news")}
-              className="text-[15px] font-medium px-6 py-3 transition-all duration-200"
+              className="px-5 py-2 rounded-full text-sm font-medium border transition-all duration-200"
               style={{
-                color: "#003580",
-                fontWeight: activeAnnouncementTab === "news" ? 600 : 500,
-                borderBottom:
-                  activeAnnouncementTab === "news"
-                    ? "3px solid #FF9933"
-                    : "3px solid transparent",
-                marginBottom: "-1px",
+                background:
+                  activeAnnouncementTab === "news" ? "#003580" : "transparent",
+                color: activeAnnouncementTab === "news" ? "#fff" : "#666",
+                borderColor:
+                  activeAnnouncementTab === "news" ? "#003580" : "#D0D6E4",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
               }}
             >
               {isHi ? "समाचार" : "News"}
@@ -1021,52 +1226,73 @@ export default function HomePage() {
               transition: "opacity 0.25s ease",
             }}
           >
-            <div className="space-y-0">
+            <div className="space-y-3">
               {announcements.map((item, idx) => (
                 <div
                   key={item.title}
                   data-ocid={`announcements.item.${idx + 1}`}
-                  className="pl-4 border-l-[3px] border-[#FF9933] pb-4 pt-2 border-b border-b-[#eeeeee] last:border-b-0 mb-3 last:mb-0 transition-colors duration-200 hover:bg-[#FFF8F0] -ml-4 pl-[calc(1rem+3px)] rounded-r pr-2"
+                  className="flex gap-0 rounded-lg overflow-hidden border border-[#E4EAF5] transition-all duration-200"
+                  style={{ boxShadow: "0 1px 4px rgba(0,53,128,0.05)" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      "0 4px 14px rgba(0,53,128,0.12)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      "0 1px 4px rgba(0,53,128,0.05)";
+                  }}
                 >
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  {/* Date column */}
+                  <div
+                    className="flex-shrink-0 flex flex-col items-center justify-center px-4 py-4 min-w-[80px]"
+                    style={{ background: "#003580" }}
+                  >
                     <span
-                      className="inline-block text-[11px] font-bold px-2 py-0.5 rounded"
-                      style={{ background: "#FF9933", color: "#003580" }}
+                      className="text-white text-[11px] font-bold text-center leading-tight"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
                       {item.date}
                     </span>
-                    {item.isNew && (
-                      <span
-                        className="inline-block text-[10px] font-bold px-2 py-0.5 rounded"
-                        style={{ background: "#138808", color: "#fff" }}
-                      >
-                        NEW
-                      </span>
-                    )}
-                    <span
-                      className="inline-block text-[11px] px-2 py-0.5 rounded"
-                      style={{
-                        background: "#E8F0FB",
-                        color: "#003580",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      {item.category}
-                    </span>
                   </div>
-                  <h3 className="text-[15px] font-medium text-[#003580] mb-1 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-[13px] text-[#666] leading-relaxed truncate">
-                    {item.desc}
-                  </p>
+                  {/* Content */}
+                  <div className="flex-1 px-4 py-3 bg-white">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      {item.isNew && (
+                        <span
+                          className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full"
+                          style={{ background: "#138808", color: "#fff" }}
+                        >
+                          NEW
+                        </span>
+                      )}
+                      <span
+                        className="inline-block text-[11px] px-2 py-0.5 rounded-full"
+                        style={{ background: "#E8F0FB", color: "#003580" }}
+                      >
+                        {item.category}
+                      </span>
+                    </div>
+                    <h3
+                      className="text-[14px] font-semibold text-[#003580] mb-1 leading-snug"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-[13px] text-[#666] leading-relaxed truncate">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-end mt-5">
+            <div className="flex justify-end mt-6">
               <Link
                 to="/announcements"
-                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
                 data-ocid="announcements.link"
               >
                 {isHi ? "सभी घोषणाएं देखें →" : "View All Announcements →"}
@@ -1085,52 +1311,73 @@ export default function HomePage() {
               transition: "opacity 0.25s ease",
             }}
           >
-            <div className="space-y-0">
+            <div className="space-y-3">
               {news.map((item, idx) => (
                 <div
                   key={item.title}
                   data-ocid={`news.item.${idx + 1}`}
-                  className="pl-4 border-l-[3px] border-[#FF9933] pb-4 pt-2 border-b border-b-[#eeeeee] last:border-b-0 mb-3 last:mb-0 transition-colors duration-200 hover:bg-[#FFF8F0] -ml-4 pl-[calc(1rem+3px)] rounded-r pr-2"
+                  className="flex gap-0 rounded-lg overflow-hidden border border-[#E4EAF5] transition-all duration-200"
+                  style={{ boxShadow: "0 1px 4px rgba(0,53,128,0.05)" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      "0 4px 14px rgba(0,53,128,0.12)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.boxShadow =
+                      "0 1px 4px rgba(0,53,128,0.05)";
+                  }}
                 >
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  {/* Date column */}
+                  <div
+                    className="flex-shrink-0 flex flex-col items-center justify-center px-4 py-4 min-w-[80px]"
+                    style={{ background: "#003580" }}
+                  >
                     <span
-                      className="inline-block text-[11px] font-bold px-2 py-0.5 rounded"
-                      style={{ background: "#FF9933", color: "#003580" }}
+                      className="text-white text-[11px] font-bold text-center leading-tight"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
                       {item.date}
                     </span>
-                    {item.isNew && (
-                      <span
-                        className="inline-block text-[10px] font-bold px-2 py-0.5 rounded"
-                        style={{ background: "#138808", color: "#fff" }}
-                      >
-                        NEW
-                      </span>
-                    )}
-                    <span
-                      className="inline-block text-[11px] px-2 py-0.5 rounded"
-                      style={{
-                        background: "#E8F0FB",
-                        color: "#003580",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      {item.category}
-                    </span>
                   </div>
-                  <h3 className="text-[15px] font-medium text-[#003580] mb-1 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-[13px] text-[#666] leading-relaxed truncate">
-                    {item.desc}
-                  </p>
+                  {/* Content */}
+                  <div className="flex-1 px-4 py-3 bg-white">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      {item.isNew && (
+                        <span
+                          className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full"
+                          style={{ background: "#138808", color: "#fff" }}
+                        >
+                          NEW
+                        </span>
+                      )}
+                      <span
+                        className="inline-block text-[11px] px-2 py-0.5 rounded-full"
+                        style={{ background: "#E8F0FB", color: "#003580" }}
+                      >
+                        {item.category}
+                      </span>
+                    </div>
+                    <h3
+                      className="text-[14px] font-semibold text-[#003580] mb-1 leading-snug"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-[13px] text-[#666] leading-relaxed truncate">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-end mt-5">
+            <div className="flex justify-end mt-6">
               <a
                 href="https://mealibrary.gov.in"
-                className="text-sm font-semibold text-[#FF9933] hover:text-[#003580] transition-colors"
+                className="text-sm font-semibold transition-colors"
+                style={{
+                  color: "#FF9933",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
                 data-ocid="news.link"
               >
                 {isHi ? "सभी समाचार देखें →" : "View All News →"}
@@ -1140,12 +1387,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* New Arrivals Carousel */}
+      <hr className="section-divider" />
+
+      {/* ─── New Arrivals Carousel ──────────────────── */}
       <NewArrivalsCarousel items={archivalItems} isHi={isHi} />
 
-      {/* Government Initiatives Banner */}
+      <hr className="section-divider" />
+
+      {/* ─── Government Initiatives Banner ─────────── */}
       <section
-        className="bg-white py-8 px-4"
+        className="bg-white py-8 px-6"
         aria-label={isHi ? "सरकारी पहल" : "Government Initiatives"}
       >
         <div className="w-full max-w-7xl mx-auto flex items-center justify-center">
@@ -1199,17 +1450,15 @@ function NewArrivalsCarousel({
 
   return (
     <section
-      className="bg-[#F5F3EE] py-12 px-4"
+      className="py-14 px-6"
+      style={{ background: "oklch(0.97 0.005 250)" }}
       aria-labelledby="archivals-heading"
     >
       <div className="max-w-7xl mx-auto">
-        <h2
-          id="archivals-heading"
-          className="text-xl font-bold text-olive mb-2"
-        >
-          {isHi ? "नई प्रविष्टियां" : "New Arrivals"}
-        </h2>
-        <div className="w-12 h-1 bg-[#FF9933] mb-8" aria-hidden="true" />
+        <SectionHeading
+          label={isHi ? "अभिलेखागार संग्रह" : "Archival Collections"}
+          title={isHi ? "नई प्रविष्टियां" : "New Arrivals"}
+        />
         <div className="relative">
           <div
             className="grid gap-5"
@@ -1221,28 +1470,63 @@ function NewArrivalsCarousel({
             {visibleItems.map((item) => (
               <div
                 key={item.title}
-                className="bg-white border border-border rounded overflow-hidden flex flex-col"
+                className="bg-white rounded-xl overflow-hidden flex flex-col transition-all duration-200"
+                style={{
+                  boxShadow: "0 2px 12px rgba(0,53,128,0.07)",
+                  borderLeft: "4px solid #FF9933",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 8px 24px rgba(0,53,128,0.15)";
+                  (e.currentTarget as HTMLDivElement).style.transform =
+                    "translateY(-3px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 2px 12px rgba(0,53,128,0.07)";
+                  (e.currentTarget as HTMLDivElement).style.transform = "";
+                }}
               >
-                <div className="overflow-hidden h-[180px]">
+                <div className="overflow-hidden h-[175px]">
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center transition-transform duration-300"
+                    style={{ transition: "transform 0.3s ease" }}
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white bg-olive px-2 py-0.5 rounded">
+                    <span
+                      className="text-[10px] font-bold uppercase tracking-wider text-white px-2 py-0.5 rounded-full"
+                      style={{ background: "#003580", letterSpacing: "0.06em" }}
+                    >
                       {item.tag}
                     </span>
                     <span className="text-[11px] text-[#888]">{item.date}</span>
                   </div>
-                  <h3 className="text-sm font-semibold text-olive leading-snug mb-3 flex-1">
+                  <h3
+                    className="text-sm font-semibold text-[#003580] leading-snug mb-3 flex-1"
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
                     {item.title}
                   </h3>
                   <button
                     type="button"
-                    className="text-xs font-semibold text-[#FF9933] hover:text-olive transition-colors self-start"
+                    className="text-xs font-semibold self-start transition-colors"
+                    style={{
+                      color: "#FF9933",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color =
+                        "#003580";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color =
+                        "#FF9933";
+                    }}
                   >
                     {isHi ? "विवरण देखें →" : "View Details →"}
                   </button>
@@ -1250,6 +1534,7 @@ function NewArrivalsCarousel({
               </div>
             ))}
           </div>
+
           {/* Arrows inside carousel */}
           <button
             type="button"
@@ -1272,17 +1557,23 @@ function NewArrivalsCarousel({
             ›
           </button>
         </div>
+
+        {/* Dot indicators */}
         <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={String(i)}
-              type="button"
-              onClick={() => setCurrentIndex(i)}
-              className="w-2 h-2 rounded-full transition-colors"
-              style={{ background: i === currentIndex ? "#FF9933" : "#ccc" }}
-              aria-label={`${isHi ? "स्लाइड" : "Slide"} ${i + 1}`}
-            />
-          ))}
+          {Array.from({ length: maxIndex + 1 }, (_, i) => `dot-${i}`).map(
+            (dotKey, i) => (
+              <button
+                key={dotKey}
+                type="button"
+                onClick={() => setCurrentIndex(i)}
+                className="w-2 h-2 rounded-full transition-colors"
+                style={{
+                  background: i === currentIndex ? "#FF9933" : "#CBD5E1",
+                }}
+                aria-label={`${isHi ? "स्लाइड" : "Slide"} ${i + 1}`}
+              />
+            ),
+          )}
         </div>
       </div>
     </section>
